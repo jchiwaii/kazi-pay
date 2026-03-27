@@ -1,0 +1,22 @@
+# Environments
+.env
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database (in case you ever use sqlite locally)
+*.sqlite3
+
+# Django
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Windows system files
+Thumbs.db
+desktop.ini
