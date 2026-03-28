@@ -29,6 +29,59 @@ We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Cl
 | M‑Pesa   | Daraja API (STK Push, B2C) |
 | SMS      | Africa’s Talking |
 
+🔐 Core Features
+Secure User Authentication
+
+Register/login with phone number (OTP) or email/password.
+
+JWT tokens for secure API access.
+
+Separate roles: Client, Worker, or Both.
+
+M‑Pesa Escrow Payments
+
+Clients pay via STK Push – funds held in escrow until job completion.
+
+Workers receive payment instantly via B2C after client confirmation.
+
+Full callback handling for transaction status.
+
+Job Management
+
+Clients can post jobs with description, amount, and target worker.
+
+Workers can view available jobs and accept them.
+
+Clients see their active jobs and can confirm completion.
+
+Real‑time SMS Notifications
+
+Africa’s Talking integration sends SMS at every key step:
+
+Payment received
+
+Job accepted
+
+Payment released
+
+Auto‑Release Mechanism
+
+If client doesn’t confirm within 48 hours of worker acceptance, the system automatically pays the worker (prevents client hold-ups).
+
+Transaction History
+
+Every deposit and payout is logged in a Transaction model for full transparency.
+
+Dual‑Role Dashboards
+
+Client dashboard: post jobs, view active jobs, confirm completion.
+
+Worker dashboard: browse available jobs, see accepted jobs, track earnings.
+
+Responsive Web Interface
+
+Built with React + Tailwind CSS – works on desktop and mobile.
+
 ---
 
 ## 👥 Team
