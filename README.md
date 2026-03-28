@@ -42,6 +42,7 @@ We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Cl
 | Gavin Chesebe | Documentation & Presentation |
 
 
+```text
 kazipay/
 ├── backend/                 # Django project
 │   ├── Kazi_Pay/            # Project settings
@@ -88,6 +89,7 @@ kazipay/
 ├── .gitignore
 ├── LICENSE
 └── README.md
+```
 ## 🚧 Status
 
 The project is being actively developed. This README will be updated with:
