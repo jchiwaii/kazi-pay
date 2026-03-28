@@ -1,0 +1,273 @@
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  margin: 0;
+  background: #ffffff;
+  color: #111;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #002a00;
+  color: white;
+  padding: 15px 30px;
+}
+
+header button {
+  background: #ff8c00;
+  border: none;
+  color: white;
+}
+
+.top-nav ul {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.primary-btn {
+  background: #ff8c00;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #d4af37;
+  color: #002a00;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(125deg, #e9f2ee 0%, #f8fff7 100%);
+  padding: 55px 20px 40px;
+}
+
+.hero-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 30px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.hero-text h1,
+.hero-text p {
+  margin: 0;
+}
+
+.hero-text h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+  color: #002a00;
+  line-height: 1.15;
+}
+
+.hero-text p {
+  max-width: 520px;
+  margin: 14px 0 22px;
+  color: #2d4f2d;
+  font-size: 1.08rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid #d8e9d6;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 7px 13px rgba(46, 96, 58, 0.08);
+}
+
+.feature-card h3 {
+  margin: 0 0 8px;
+  color: #003a00;
+  font-size: 1.08rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #4b5c4b;
+  font-size: 0.95rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 920px) {
+  .hero-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-features {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text p {
+    margin: 12px auto 20px;
+  }
+}
+
+/* BUTTONS */
+button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #ff8c00;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #d4af37;
+  color: #002a00;
+}
+
+/* SECONDARY BUTTON */
+.secondary-btn {
+  background: #002a00;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background: #d4af37;
+}
+
+/* CARDS (jobs/products) */
+.card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 0;
+  color: #002a00;
+}
+
+.card p {
+  color: #666;
+}
+
+/* SEARCH BAR */
+.search-con {
+  margin: 0 20px;
+}
+
+.search-con form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #c8d8c8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.search-con input[type="search"] {
+  border: none;
+  outline: none;
+  width: 210px;
+  font-size: 0.95rem;
+  color: #222;
+  background: transparent;
+}
+
+.search-con input[type="search"]::placeholder {
+  color: #8f9b8f;
+}
+
+.search-icon {
+  color: #2b6b2b;
+  font-size: 1rem;
+}
+
+.search-con button {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid #2b6b2b;
+  background: #2b6b2b;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-con button:hover {
+  background: #1f4f1f;
+  border-color: #1f4f1f;
+}
