@@ -10,7 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --- SECURITY ---
 SECRET_KEY = config("SECRET_KEY", default="your_secret_key_here")
 DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1").split(",")
+
+# FIX: Added .ngrok-free.app so Africa's Talking can connect to your local server
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost,.ngrok-free.app").split(",")
 
 # --- APPLICATION DEFINITION ---
 DJANGO_APPS = [
@@ -34,7 +36,6 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "allauth.account",
 ]
-
 
 LOCAL_APPS = [
     "authApp.apps.AuthappConfig",
@@ -60,7 +61,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
-
 
 SITE_ID = 1
 ROOT_URLCONF = "backend.urls"
@@ -107,9 +107,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "authApp.serializers.CustomRegisterSerializer",
 }
 
-
 ACCOUNT_ADAPTER = "authApp.adapters.CustomAccountAdapter"
-
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
@@ -125,20 +123,18 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "access-token",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
     "JWT_AUTH_HTTPONLY": True,
-    "JWT_AUTH_SECURE": True,  # Set to True in production (HTTPS)
+    "JWT_AUTH_SECURE": False,  # Changed to False for local development/Testing
     "JWT_AUTH_SAMESITE": "Lax",
-     "LOGIN_SERIALIZER": "authApp.serializers.CustomLoginSerializer",
+    "LOGIN_SERIALIZER": "authApp.serializers.CustomLoginSerializer",
     "USER_DETAILS_SERIALIZER": "authApp.serializers.UserDetailSerializer",
     'REGISTER_SERIALIZER': 'authApp.serializers.CustomRegisterSerializer',
 }
 
-CORS_ALLOW_ALL_ORIGINS = True  # Change to specific origins for production
+CORS_ALLOW_ALL_ORIGINS = True 
 
 # --- PASSWORD VALIDATION ---
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -146,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # --- INTERNATIONALIZATION ---
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Africa/Nairobi"  # Updated to local time for KaziPesa
+TIME_ZONE = "Africa/Nairobi" 
 USE_I18N = True
 USE_TZ = True
 
@@ -159,15 +155,22 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # --- DEFAULT AUTO FIELD ---
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# --- AFRICA'S TALKING CONFIG ---
+AT_USERNAME = config("AT_USERNAME", default="sandbox")
+AT_API_KEY = config("AT_API_KEY", default="")
+AT_PHONE_NUMBER = config("AT_PHONE_NUMBER", default="")
+AT_SHORTCODE = config("AT_SHORTCODE", default="23440")
+
 # --- MPESA INTEGRATION ---
 MPESA_ENVIRONMENT = config("MPESA_ENVIRONMENT", default="sandbox")
-MPESA_CONSUMER_KEY = config("MPESA_CONSUMER_KEY")
-MPESA_CONSUMER_SECRET = config("MPESA_CONSUMER_SECRET")
-MPESA_SHORTCODE = config("MPESA_SHORTCODE")
-MPESA_PASSKEY = config("MPESA_PASSKEY")
-MPESA_INITIATOR_NAME = config("MPESA_INITIATOR_NAME")
-MPESA_SECURITY_CREDENTIAL = config("MPESA_SECURITY_CREDENTIAL")
+MPESA_CONSUMER_KEY = config("MPESA_CONSUMER_KEY", default="")
+MPESA_CONSUMER_SECRET = config("MPESA_CONSUMER_SECRET", default="")
+MPESA_SHORTCODE = config("MPESA_SHORTCODE", default="")
+MPESA_PASSKEY = config("MPESA_PASSKEY", default="")
+MPESA_INITIATOR_NAME = config("MPESA_INITIATOR_NAME", default="")
+MPESA_SECURITY_CREDENTIAL = config("MPESA_SECURITY_CREDENTIAL", default="")
 
+# --- ALLAUTH ADDITIONAL CONFIG ---
 ACCOUNT_LOGIN_METHODS = ["username"]
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False
