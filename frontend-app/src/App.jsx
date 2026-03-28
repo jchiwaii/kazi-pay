@@ -142,6 +142,29 @@ const trustCards = [
   },
 ];
 
+const footerColumns = [
+  {
+    title: "Explore",
+    links: [
+      { label: "About", href: "#about" },
+      { label: "Features", href: "#features" },
+      { label: "Operations", href: "#showcase" },
+      { label: "Trust", href: "#trust" },
+    ],
+  },
+  {
+    title: "Platform",
+    links: [
+      { label: "Escrow-first jobs", href: "#features" },
+      { label: "Release reviews", href: "#showcase" },
+      { label: "Client approval flow", href: "#trust" },
+      { label: "Back to top", href: "#top" },
+    ],
+  },
+];
+
+const footerSocials = ["in", "ig", "tg"];
+
 function AuroraBackdrop() {
   return (
     <div aria-hidden="true" className="aurora">
@@ -546,22 +569,72 @@ export default function App() {
         </div>
       </section>
 
-      <footer id="footer" className="border-t border-black/6 bg-white px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-[1280px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-base font-bold tracking-[-0.04em] text-[var(--ink)]">
-              KaziPay
+      <footer id="footer" className="footer-shell px-4 pt-24 sm:px-6 lg:px-8">
+        <div aria-hidden="true" className="footer-backdrop" />
+
+        <div className="relative z-10 mx-auto max-w-[1280px]">
+          <div className="footer-cta mx-auto max-w-[910px] text-center">
+            <p className="text-sm font-medium uppercase tracking-[0.22em] text-white/70">
+              Ready to launch safer jobs?
             </p>
-            <p className="mt-1 text-sm font-extralight text-[var(--muted)]">
-              Escrow-first payments for real work.
+            <h2 className="mt-5 text-[clamp(2.8rem,6vw,5.6rem)] font-extrabold leading-[0.96] tracking-[-0.07em] text-white">
+              Fund the work first.
+              <br />
+              Release it with confidence.
+            </h2>
+            <p className="mx-auto mt-6 max-w-[660px] text-base font-light leading-8 text-white">
+              KaziPay keeps clients and workers aligned with upfront escrow,
+              clean status tracking, and a release flow that feels fair to both
+              sides.
             </p>
+
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <PrimaryButton href="#top">Get Started</PrimaryButton>
+              <PrimaryButton href="#showcase" secondary>
+                View operations
+              </PrimaryButton>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-6 text-sm font-extralight text-[var(--muted)]">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
-              </a>
+
+          <div className="footer-divider mt-20" />
+
+          <div className="grid gap-14 py-14 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.85fr)_minmax(0,0.85fr)]">
+            <div className="max-w-[320px]">
+              <LogoMark />
+              <p className="mt-5 text-sm font-light leading-7 text-white/90">
+                Escrow-first payments for real work across Kenya&apos;s everyday
+                service economy.
+              </p>
+            </div>
+
+            {footerColumns.map((column) => (
+              <div key={column.title}>
+                <p className="footer-link-title">{column.title}</p>
+                <div className="mt-5 grid gap-4">
+                  {column.links.map((link) => (
+                    <a key={link.label} href={link.href} className="footer-link">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
             ))}
+          </div>
+
+          <div className="footer-divider" />
+
+          <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm font-light text-white/90">
+              2026 KaziPay. Escrow-first payments for real work.
+            </p>
+
+            <div className="flex items-center gap-3">
+              {footerSocials.map((social) => (
+                <span key={social} className="footer-social-pill">
+                  {social}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </footer>
