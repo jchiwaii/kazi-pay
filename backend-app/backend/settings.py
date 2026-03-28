@@ -17,17 +17,25 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
+    'django.contrib.sites',
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    "rest_framework_simplejwt", # Added for JWT Auth
+    'rest_framework.authtoken',
     "corsheaders",
     "drf_yasg",
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'allauth',
+    "allauth.socialaccount",
+    'allauth.account',
 ]
+
 
 LOCAL_APPS = [
     "authApp.apps.AuthappConfig",
@@ -51,8 +59,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+     'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
+
+SITE_ID = 1
 ROOT_URLCONF = "backend.urls"
 
 TEMPLATES = [
@@ -88,6 +100,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -100,6 +113,15 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
+}
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'access-token',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
+    'JWT_AUTH_HTTPONLY': True,
+    'JWT_AUTH_SECURE': True,  # Set to True in production (HTTPS)
+    'JWT_AUTH_SAMESITE': 'Lax',
 }
 
 CORS_ALLOW_ALL_ORIGINS = True # Change to specific origins for production
@@ -135,3 +157,8 @@ MPESA_SHORTCODE = config("MPESA_SHORTCODE")
 MPESA_PASSKEY = config("MPESA_PASSKEY")
 MPESA_INITIATOR_NAME = config("MPESA_INITIATOR_NAME")
 MPESA_SECURITY_CREDENTIAL = config("MPESA_SECURITY_CREDENTIAL")
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'          
+ACCOUNT_EMAIL_VERIFICATION = 'none'        
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True

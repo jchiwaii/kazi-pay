@@ -20,7 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls), 
 
     # App-specific API Endpoints
-    path('api/auth/', include('authApp.urls')),
+   path('api/auth/', include('dj_rest_auth.urls')),
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
     path('api/client/', include('clients.urls')),
     path('api/worker/', include('workers.urls')),
     path('api/escrow/', include('escrow.urls')),

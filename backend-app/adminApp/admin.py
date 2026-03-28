@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import PlatformRevenue, SystemAuditLog
 
-# Register your models here.
+admin.site.register(PlatformRevenue)
+admin.site.register(SystemAuditLog)
