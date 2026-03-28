@@ -29,59 +29,26 @@ We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Cl
 | M‑Pesa   | Daraja API (STK Push, B2C) |
 | SMS      | Africa’s Talking |
 
-🔐 Core Features
-Secure User Authentication
 
-Register/login with phone number (OTP) or email/password.
+## 🌟 Core Features
 
-JWT tokens for secure API access.
+- 🔐 **Secure Authentication** – Register/login with phone number (OTP) or email/password. JWT tokens secure all API requests. Roles: Client, Worker, or Both.
 
-Separate roles: Client, Worker, or Both.
+- 💰 **M‑Pesa Escrow Payments** – Clients pay via STK Push; funds are held until the job is completed. Workers receive payment instantly via B2C after client confirmation.
 
-M‑Pesa Escrow Payments
+- 📋 **Job Management** – Clients post jobs with description, amount, and target worker. Workers view and accept available jobs. Clients confirm completion to release payment.
 
-Clients pay via STK Push – funds held in escrow until job completion.
+- 📨 **Real‑time SMS Notifications** – Africa’s Talking sends SMS updates at every key step: payment received, job accepted, payment released.
 
-Workers receive payment instantly via B2C after client confirmation.
+- ⏱️ **Auto‑Release Mechanism** – If the client does not confirm within 48 hours of worker acceptance, the system automatically pays the worker (protects workers from unresponsive clients).
 
-Full callback handling for transaction status.
+- 🧾 **Transaction History** – Every deposit and payout is logged in a transaction model for full transparency.
 
-Job Management
+- 👥 **Dual‑Role Dashboards** – Separate interfaces for clients (post jobs, track active jobs, confirm completion) and workers (browse available jobs, see accepted jobs, track earnings).
 
-Clients can post jobs with description, amount, and target worker.
+- 📱 **Responsive Web Interface** – Built with React and Tailwind CSS, works seamlessly on desktop and mobile.
 
-Workers can view available jobs and accept them.
-
-Clients see their active jobs and can confirm completion.
-
-Real‑time SMS Notifications
-
-Africa’s Talking integration sends SMS at every key step:
-
-Payment received
-
-Job accepted
-
-Payment released
-
-Auto‑Release Mechanism
-
-If client doesn’t confirm within 48 hours of worker acceptance, the system automatically pays the worker (prevents client hold-ups).
-
-Transaction History
-
-Every deposit and payout is logged in a Transaction model for full transparency.
-
-Dual‑Role Dashboards
-
-Client dashboard: post jobs, view active jobs, confirm completion.
-
-Worker dashboard: browse available jobs, see accepted jobs, track earnings.
-
-Responsive Web Interface
-
-Built with React + Tailwind CSS – works on desktop and mobile.
-
+  
 ---
 
 ## 👥 Team
