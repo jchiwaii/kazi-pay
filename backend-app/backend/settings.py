@@ -17,23 +17,22 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
-    'rest_framework.authtoken',
+    "rest_framework.authtoken",
     "corsheaders",
     "drf_yasg",
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-    'allauth',
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "allauth",
     "allauth.socialaccount",
-    'allauth.account',
+    "allauth.account",
 ]
 
 
@@ -50,7 +49,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware", # Must be at the top
+    "corsheaders.middleware.CorsMiddleware",  # Must be at the top
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -59,8 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-     'allauth.account.middleware.AccountMiddleware',
-    
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 
@@ -97,38 +95,50 @@ DATABASES = {
 AUTH_USER_MODEL = "authApp.CustomUser"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
     ],
 }
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "authApp.serializers.CustomRegisterSerializer",
+}
+
+
+ACCOUNT_ADAPTER = "authApp.adapters.CustomAccountAdapter"
+
+
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
 }
 
 REST_AUTH = {
-    'USE_JWT': True,
-    'JWT_AUTH_COOKIE': 'access-token',
-    'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
-    'JWT_AUTH_HTTPONLY': True,
-    'JWT_AUTH_SECURE': True,  # Set to True in production (HTTPS)
-    'JWT_AUTH_SAMESITE': 'Lax',
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access-token",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
+    "JWT_AUTH_HTTPONLY": True,
+    "JWT_AUTH_SECURE": True,  # Set to True in production (HTTPS)
+    "JWT_AUTH_SAMESITE": "Lax",
+     "LOGIN_SERIALIZER": "authApp.serializers.CustomLoginSerializer",
+    "USER_DETAILS_SERIALIZER": "authApp.serializers.UserDetailSerializer",
+    'REGISTER_SERIALIZER': 'authApp.serializers.CustomRegisterSerializer',
 }
 
-CORS_ALLOW_ALL_ORIGINS = True # Change to specific origins for production
+CORS_ALLOW_ALL_ORIGINS = True  # Change to specific origins for production
 
 # --- PASSWORD VALIDATION ---
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -136,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # --- INTERNATIONALIZATION ---
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Africa/Nairobi" # Updated to local time for KaziPesa
+TIME_ZONE = "Africa/Nairobi"  # Updated to local time for KaziPesa
 USE_I18N = True
 USE_TZ = True
 
@@ -147,7 +157,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # --- DEFAULT AUTO FIELD ---
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # --- MPESA INTEGRATION ---
 MPESA_ENVIRONMENT = config("MPESA_ENVIRONMENT", default="sandbox")
@@ -158,7 +168,7 @@ MPESA_PASSKEY = config("MPESA_PASSKEY")
 MPESA_INITIATOR_NAME = config("MPESA_INITIATOR_NAME")
 MPESA_SECURITY_CREDENTIAL = config("MPESA_SECURITY_CREDENTIAL")
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username'          
-ACCOUNT_EMAIL_VERIFICATION = 'none'        
+ACCOUNT_LOGIN_METHODS = ["username"]
+ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True

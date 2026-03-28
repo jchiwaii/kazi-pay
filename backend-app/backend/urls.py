@@ -21,7 +21,7 @@ urlpatterns = [
 
     # App-specific API Endpoints
    path('api/auth/', include('dj_rest_auth.urls')),
-    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/auth/register/', include('dj_rest_auth.registration.urls')),
     path('api/client/', include('clients.urls')),
     path('api/worker/', include('workers.urls')),
     path('api/escrow/', include('escrow.urls')),
