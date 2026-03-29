@@ -1,6 +1,10 @@
-# KaziPay – Secure Escrow for Kenya's Gig Economy
+# KaziPay – Secure Escrow for Kenya’s Gig Economy
 
-![alt text](image-1.png)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Built with Django](https://img.shields.io/badge/Built%20with-Django-092E20?logo=django)](https://www.djangoproject.com/)
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react)](https://reactjs.org/)
+[![M‑Pesa](https://img.shields.io/badge/Powered%20by-M‑Pesa-00A859?logo=safaricom)](https://developer.safaricom.co.ke/)
+
 
 KaziPay is an escrow platform for Kenya's gig economy – built for the M‑Pesa Africa x GOMYCODE Hackathon 2026.
 
