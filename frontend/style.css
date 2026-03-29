@@ -1,3 +1,27 @@
+:root {
+  --green-dark: #002a00;
+  --green-mid: #004d00;
+  --green-light: #e8f5e8;
+  --orange: #ff8c00;
+  --orange-hover: #e07800;
+  --gold: #d4af37;
+  --gold-light: #fff8dc;
+  --white: #ffffff;
+  --grey-100: #f7f7f5;
+  --grey-200: #ececea;
+  --grey-400: #9b9b96;
+  --grey-700: #3d3d38;
+  --black: #111110;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --transition: 0.22s ease;
+}
+
 body {
   font-family:
     system-ui,
@@ -14,16 +38,103 @@ body {
   margin: 0;
   background: #ffffff;
   color: #111;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 /* HEADER */
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: #002a00;
   color: white;
-  padding: 15px 30px;
+  padding: 12px 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  flex: 0 0 auto;
+}
+
+.top-nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.search-con,
+.auth-actions {
+  flex: 0 0 auto;
+}
+
+nav {
+  background: var(--green-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-right: 200px;
+}
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--white);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+  letter-spacing: 0.2px;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+}
+.nav-links a.active {
+  color: var(--gold);
 }
 
 header button {

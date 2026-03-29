@@ -36,15 +36,20 @@
   </head>
   <body>
     <header class="site-header">
-      <div class="brand"><h1>Kazi Pay</h1></div>
       <nav class="top-nav">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="service.html">Services</a></li>
-          <li><a href="market.html">Market</a></li>
-          <li><a href="#jobs">Jobs</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-        </ul>
+        <div class="nav-inner">
+          <a class="logo" href="index.html">
+            <div class="logo-mark">K</div>
+            <span class="logo-text">Kazi Pay</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="market.html">Market</a></li>
+            <li><a href="jobs.html">Jobs</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
       </nav>
       <div class="search-con">
         <form action="/search-results-page" method="GET">
@@ -163,23 +168,6 @@
       <p>Amount: Ksh <span id="amount">0</span></p>
       <button id="payNowBtn" class="btn primary-btn">Pay Now</button>
       <p id="status"></p>
-    </section>
-
-    <section id="dashboard" class="page-section">
-      <h2>Dashboard</h2>
-      <div class="section-grid">
-        <article>
-          <h3>My Jobs</h3>
-          <div id="jobs">No jobs yet</div>
-        </article>
-        <article>
-          <h3>My Orders</h3>
-          <div id="orders">No orders yet</div>
-        </article>
-      </div>
-      <button id="confirmDelivery" class="btn secondary-btn">
-        Confirm Delivery
-      </button>
     </section>
 
     <script src="script.js"></script>

@@ -1,9 +1,145 @@
-<h2>Dashboard</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kazi Pay — Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a class="logo" href="index.html">
+          <div class="logo-mark">K</div>
+          <span class="logo-text">Kazi Pay</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="market.html">Market</a></li>
+          <li><a href="index.html/#jobs">Jobs</a></li>
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+          <span class="pulse"></span>
+          <div class="avatar" title="Your account">SO</div>
+        </div>
+      </div>
+    </nav>
 
-<h3>My Jobs</h3>
-<div id="jobs"></div>
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>Good morning, <span class="hero-accent">Susan O.</span></h1>
+        <p>
+          Here's a real-time overview of your escrow activity and transactions.
+        </p>
+      </div>
+    </div>
 
-<h3>My Orders</h3>
-<div id="orders"></div>
+    <!-- ── STATS STRIP ── -->
+    <div class="stats-strip">
+      <div class="stat-card gold">
+        <div class="stat-label">Funds in Escrow</div>
+        <div class="stat-value" id="stat-held">KES 0</div>
+        <div class="stat-sub">Securely held</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-label">Awaiting Confirmation</div>
+        <div class="stat-value" id="stat-awaiting">0</div>
+        <div class="stat-sub">Pending your action</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Total Released</div>
+        <div class="stat-value" id="stat-released">KES 0</div>
+        <div class="stat-sub">Successfully settled</div>
+      </div>
+    </div>
 
-<button onclick="confirmDelivery()">Confirm Delivery</button>
+    <!-- ── MAIN CONTENT ── -->
+    <main class="main">
+      <!-- A. MY JOBS -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <div class="section-icon">💼</div>
+            My Jobs
+            <span class="section-count" id="jobs-count">0</span>
+          </h2>
+        </div>
+        <div class="cards-grid" id="jobs-container">
+          <div class="empty-state">
+            <div class="icon">📋</div>
+            <p>No jobs yet. Post or accept a job to get started.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- B. MY ORDERS -->
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <div class="section-icon">📦</div>
+            My Orders
+            <span class="section-count" id="orders-count">0</span>
+          </h2>
+        </div>
+        <div class="cards-grid" id="orders-container">
+          <div class="empty-state">
+            <div class="icon">🛒</div>
+            <p>No orders placed yet. Visit the Marketplace to shop.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- C. PAYMENTS / ESCROW STATUS -->
+      <section class="section payments-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <div class="section-icon">🔐</div>
+            Payments &amp; Escrow Status
+          </h2>
+        </div>
+        <div class="payments-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="payments-body">
+              <tr>
+                <td
+                  colspan="5"
+                  style="
+                    text-align: center;
+                    color: var(--grey-400);
+                    padding: 32px;
+                  "
+                >
+                  No payment records found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── TOAST ── -->
+    <div id="toast">✅ <span id="toast-msg">Done</span></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
