@@ -83,8 +83,8 @@ export const wallet = {
 };
 
 export const notifications = {
-  list: () => request("GET", "/notification/"),
-  markRead: (id) => request("POST", `/notification/${id}/mark_as_read/`),
+  list: () => request("GET", "/api/notifications/"),
+  markRead: (id) => request("POST", `/api/notifications/${id}/mark_as_read/`),
 };
 
 export { setTokens, clearTokens };

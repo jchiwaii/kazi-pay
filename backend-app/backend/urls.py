@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/worker/', include('workers.urls')),
     path('api/escrow/', include('escrow.urls')),
     path('api/wallet/', include('wallet.urls')),
-    path('notification/', include('notification.urls')),
+    path('api/notifications/', include('notification.urls')),
     path('api/platform-admin/', include('adminApp.urls')), # Our custom admin logic
 
     # API Documentation (Swagger/ReDoc)

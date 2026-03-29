@@ -9,14 +9,6 @@ export default defineConfig({
         target: "http://localhost:8000",
         changeOrigin: true,
       },
-      "/notification": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-      },
-      "/escrow/mpesa-callback": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-      },
     },
   },
 });
