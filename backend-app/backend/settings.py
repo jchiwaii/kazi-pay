@@ -67,11 +67,6 @@ MIDDLEWARE = [
 
 SITE_ID = 1
 ROOT_URLCONF = "backend.urls"
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://example.com",
-    "https://kazi-pay-five.vercel.app",
-]
 
 TEMPLATES = [
     {
@@ -138,11 +133,32 @@ REST_AUTH = {
     'REGISTER_SERIALIZER': 'authApp.serializers.CustomRegisterSerializer',
 }
 
-CORS_ALLOWED_ORIGINS = config(
-    "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,http://localhost:3000"
-).split(",")
-CORS_ALLOW_ALL_ORIGINS = config("CORS_ALLOW_ALL_ORIGINS", default=False, cast=bool)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://kazi-pay-five.vercel.app",
+] + config("EXTRA_CORS_ORIGINS", default="").split(",")
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
 
 # --- PASSWORD VALIDATION ---
 AUTH_PASSWORD_VALIDATORS = [
