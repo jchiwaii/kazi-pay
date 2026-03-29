@@ -137,7 +137,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
     "https://kazi-pay-five.vercel.app",
-] + config("EXTRA_CORS_ORIGINS", default="").split(",")
+] + [o for o in config("EXTRA_CORS_ORIGINS", default="").split(",") if o]
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOW_HEADERS = [
