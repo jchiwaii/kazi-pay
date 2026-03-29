@@ -1,21 +1,26 @@
-# KaziPay – Secure Escrow for Kenya’s Gig Economy
+# KaziPay – Secure Escrow for Kenya's Gig Economy
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Built with Django](https://img.shields.io/badge/Built%20with-Django-092E20?logo=django)](https://www.djangoproject.com/)
 [![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react)](https://reactjs.org/)
 [![M‑Pesa](https://img.shields.io/badge/Powered%20by-M‑Pesa-00A859?logo=safaricom)](https://developer.safaricom.co.ke/)
 
-
 KaziPay is an escrow platform for Kenya's gig economy – built for the M‑Pesa Africa x GOMYCODE Hackathon 2026.
 
 **Live Demo:** [https://kazi-pay-five.vercel.app/](https://kazi-pay-five.vercel.app/)
 
+**API Docs:** [https://kazi-pay.onrender.com/swagger/](https://kazi-pay.onrender.com/swagger/) · [ReDoc](https://kazi-pay.onrender.com/redoc/)
+
 ## Test Accounts
 
-| Username | Phone Number | Password | Role |
-|----------|--------------|----------|------|
-| amina_client | 254711000001 | SecureK@zi99! | Client |
-| brian_plumber | 254711000002 | SecureK@zi99! | Worker |
+The live database is fresh on each deploy. Register new accounts at [https://kazi-pay-five.vercel.app/](https://kazi-pay-five.vercel.app/) using the samples below, or use these on your local setup after running migrations.
+
+| Username       | Phone Number   | Password                     | Role   |
+| -------------- | -------------- | ---------------------------- | ------ |
+| `amina_client` | `254712000001` | `KaziPay@2026!KaziPay@2026!` | Client |
+| `brian_worker` | `254712000002` | `KaziPay@2026!KaziPay@2026!` | Worker |
+
+> **Login uses phone number**.
 
 ---
 
@@ -32,7 +37,7 @@ KaziPay solves the trust gap in Kenya's informal economy by providing a secure e
 5. **Worker completes job** – Marks the job as complete when done
 6. **Client confirms completion** – Reviews work and releases payment
 7. **Worker receives funds** – Money lands in their KaziPay wallet
-8. **Withdraw to M‑Pesa** – Worker can cash out anytime
+8. **Withdraw to M‑Pesa** – Worker can cash out anytime via B2C
 
 ---
 
@@ -42,62 +47,58 @@ Kenya's informal workers (5M+) face a two‑sided trust gap: workers fear non‑
 
 ## Solution
 
-We're building a web‑based escrow system using M‑Pesa STK Push and B2C. Clients deposit funds, workers accept jobs, and payment is released only after client confirmation.
+A web‑based escrow system using M‑Pesa STK Push and B2C. Clients deposit funds, workers accept jobs, and payment is released only after client confirmation.
 
 ---
 
 ## Core Features
 
-- **Secure Authentication** – Register/login with phone number or email/password. JWT tokens secure all API requests. Roles: Client, Worker, or Both.
+- **Secure Authentication** – Register and login with phone number and password. JWT tokens secure all API requests. Roles: Client or Worker.
 
 - **M‑Pesa Escrow Payments** – Clients pay via STK Push; funds are held until the job is completed. Workers receive payment instantly via B2C after client confirmation.
 
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/mpesa%20prompt/WhatsApp%20Image%202026-03-29%20at%208.18.58%20PM.jpeg "Pay via STK push")
+![Pay via STK push](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/mpesa%20prompt/WhatsApp%20Image%202026-03-29%20at%208.18.58%20PM.jpeg)
 
-- **Job Management** – Clients post jobs with description, amount, and target worker. Workers view and accept available jobs. Clients confirm completion to release payment.
+- **Job Management** – Clients post jobs with description and budget. Workers view and bid on available jobs. Clients confirm completion to release payment.
 
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/worker%20invoice%20sent/WhatsApp%20Image%202026-03-29%20at%208.18.56%20PM.jpeg "Invoice Sent")
+![Invoice Sent](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/worker%20invoice%20sent/WhatsApp%20Image%202026-03-29%20at%208.18.56%20PM.jpeg)
 
-- **Bidding System** – Workers submit competitive bids with proposals. Clients review and select the best fit for their job.
+- **Bidding System** – Workers submit competitive bids with proposals and amounts. Clients review and select the best fit for their job.
 
 - **Digital Wallet** – Every user has a wallet to track balance, view transaction history, and withdraw funds to M‑Pesa.
 
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazipay%20client/WhatsApp%20Image%202026-03-29%20at%208.18.57%20PM.jpeg)
+![KaziPay Client](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazipay%20client/WhatsApp%20Image%202026-03-29%20at%208.18.57%20PM.jpeg)
 
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazipay%20worker%20profile/WhatsApp%20Image%202026-03-29%20at%2010.54.03%20AM.jpeg)
+![KaziPay Worker Profile](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazipay%20worker%20profile/WhatsApp%20Image%202026-03-29%20at%2010.54.03%20AM.jpeg)
 
-- **Real‑time Notifications** – In-app notifications keep both parties informed at every step: bid accepted, payment received, job completed, funds released.
+- **Real‑time Notifications** – In-app notifications keep both parties informed at every step: bid accepted, job completed, funds released, dispute raised.
 
-- **Dispute Resolution** – Either party can raise disputes with detailed reasons. Admin reviews and mediates to ensure fair outcomes.
+- **Dispute Resolution** – Either party can raise a dispute with a detailed reason. Admin reviews and resolves via the platform admin panel.
 
-- **Auto‑Release Mechanism** – If the client does not confirm within 48 hours of worker completion, the system automatically pays the worker (protects workers from unresponsive clients).
+- **Transaction History** – Every deposit and payout is logged in the wallet transaction model for full transparency.
 
-- **Transaction History** – Every deposit and payout is logged in a transaction model for full transparency.
+- **Dual‑Role Dashboards** – Separate interfaces for clients (post jobs, review bids, confirm completion, manage escrow) and workers (browse jobs, place bids, mark complete, track earnings and withdraw).
 
-- **Dual‑Role Dashboards** – Separate interfaces for clients (post jobs, track active jobs, confirm completion) and workers (browse available jobs, see accepted jobs, track earnings).
+![KaziPay Worker](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazi%20pay%20worker/WhatsApp%20Image%202026-03-29%20at%2010.54.03%20AM.jpeg)
 
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazipay%20client/WhatsApp%20Image%202026-03-29%20at%208.18.57%20PM.jpeg "KaziPay Client")
-
-![alt text](https://raw.githubusercontent.com/susan-awori/kazi-pay/refs/heads/main/screenshots/kazi%20pay%20worker/WhatsApp%20Image%202026-03-29%20at%2010.54.03%20AM.jpeg "KaziPay Worker")
-
-- **Responsive Web Interface** – Built with React and Tailwind CSS, works seamlessly on desktop and mobile.
+- **Responsive Web Interface** – Built with React 18 and Tailwind CSS, works on desktop and mobile.
 
 ---
 
 ## Tech Stack
 
-| Category | Technology |
-|----------|------------|
-| **Backend** | Django 6.0.3, Django REST Framework |
-| **Database** | PostgreSQL (Production), SQLite (Development) |
-| **Frontend** | React 18, Vite, Tailwind CSS |
-| **Authentication** | JWT (Simple JWT), dj-rest-auth |
-| **M‑Pesa Integration** | Safaricom Daraja API (STK Push, B2C) |
-| **SMS** | Africa's Talking API |
-| **Deployment** | Render (Backend), Vercel (Frontend) |
-| **API Documentation** | drf-yasg (Swagger/ReDoc) |
-| **Environment Management** | python-decouple |
-| **Static Files** | WhiteNoise |
+| Category                   | Technology                                    |
+| -------------------------- | --------------------------------------------- |
+| **Backend**                | Django 6.0.3, Django REST Framework           |
+| **Database**               | PostgreSQL (Production), SQLite (Development) |
+| **Frontend**               | React 18, Vite, Tailwind CSS                  |
+| **Authentication**         | JWT (Simple JWT), dj-rest-auth                |
+| **M‑Pesa Integration**     | Safaricom Daraja API (STK Push, B2C)          |
+| **SMS**                    | Africa's Talking API                          |
+| **Deployment**             | Render (Backend), Vercel (Frontend)           |
+| **API Documentation**      | drf-yasg (Swagger/ReDoc)                      |
+| **Environment Management** | python-decouple                               |
+| **Static Files**           | WhiteNoise                                    |
 
 ### APIs & Integrations
 
@@ -118,8 +119,8 @@ kazi-pay/
 │   │   └── wsgi.py                # WSGI application
 │   │
 │   ├── authApp/                   # Authentication module
-│   │   ├── models.py              # CustomUser model
-│   │   ├── serializers.py         # Auth serializers
+│   │   ├── models.py              # CustomUser model (phone_number as USERNAME_FIELD)
+│   │   ├── serializers.py         # Auth serializers (login by phone number)
 │   │   ├── views.py               # Register/Login/Logout
 │   │   └── adapters.py            # Custom account adapter
 │   │
@@ -131,7 +132,7 @@ kazi-pay/
 │   │
 │   ├── workers/                   # Worker module
 │   │   ├── models.py              # WorkerProfile, Bid, WorkerRating
-│   │   ├── views.py               # Submit bid, view jobs
+│   │   ├── views.py               # Submit bid, browse jobs, mark complete
 │   │   └── urls.py                # Worker API routes
 │   │
 │   ├── escrow/                    # Escrow module
@@ -152,7 +153,7 @@ kazi-pay/
 │   │   └── urls.py                # Notification API routes
 │   │
 │   ├── adminApp/                  # Admin module
-│   │   ├── views.py               # Dispute resolution
+│   │   ├── views.py               # Dispute resolution, revenue summary
 │   │   └── urls.py                # Admin API routes
 │   │
 │   ├── manage.py                  # Django management
@@ -163,15 +164,15 @@ kazi-pay/
 ├── frontend-app/                  # React frontend
 │   ├── src/
 │   │   ├── App.jsx                # Main app (Landing, Client/Worker dashboards)
-│   │   ├── api.js                 # API client (axios)
+│   │   ├── api.js                 # API client (native fetch + JWT)
 │   │   ├── main.jsx               # React entry point
 │   │   └── index.css              # Global styles + Tailwind
 │   │
 │   ├── index.html                 # HTML template
 │   ├── package.json               # NPM dependencies
-│   ├── vite.config.js             # Vite configuration
+│   ├── vite.config.js             # Vite configuration + dev proxy
 │   ├── tailwind.config.js         # Tailwind CSS config
-│   └── vercel.json                # Vercel deployment
+│   └── vercel.json                # Vercel deployment (SPA rewrite)
 │
 ├── screenshots/                   # App screenshots
 ├── .gitignore                     # Git ignore patterns
@@ -194,43 +195,48 @@ kazi-pay/
 ### Backend Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/susan-awori/kazi-pay.git
    cd kazi-pay/backend-app
    ```
 
 2. **Create virtual environment**
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Environment configuration**
-   
-   Create a `.env` file in the `backend-app/` directory (see `.env.example` below):
+
+   Create a `.env` file in the `backend-app/` directory (see Environment Variables section below).
 
 5. **Run migrations**
+
    ```bash
-   python manage.py makemigrations
    python manage.py migrate
    ```
 
-6. **Create superuser** (optional for admin access)
+6. **Create superuser** (optional, for admin panel access)
+
    ```bash
    python manage.py createsuperuser
    ```
 
 7. **Run development server**
+
    ```bash
    python manage.py runserver
    ```
-   
-   Backend will be available at `http://localhost:8000`
+
+   Backend available at `http://localhost:8000`
 
 8. **Access API documentation**
    - Swagger UI: `http://localhost:8000/swagger/`
@@ -240,28 +246,34 @@ kazi-pay/
 ### Frontend Setup
 
 1. **Navigate to frontend directory**
+
    ```bash
    cd ../frontend-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Environment configuration**
-   
-   Create a `.env` file in `frontend-app/` directory:
+
+   Create a `.env` file in `frontend-app/`:
+
    ```env
-   VITE_API_BASE_URL=http://localhost:8000/api
+   VITE_API_URL=http://localhost:8000
    ```
 
+   > In development the Vite proxy forwards `/api` requests to `localhost:8000` automatically. The `VITE_API_URL` variable is only needed when pointing at a remote backend.
+
 4. **Run development server**
+
    ```bash
    npm run dev
    ```
-   
-   Frontend will be available at `http://localhost:5173`
+
+   Frontend available at `http://localhost:5173`
 
 5. **Build for production**
    ```bash
@@ -272,9 +284,7 @@ kazi-pay/
 
 ## Environment Variables
 
-### Backend (.env.example)
-
-Create a `.env` file in `backend-app/` with the following variables:
+### Backend (`backend-app/.env`)
 
 ```env
 # Django Settings
@@ -282,51 +292,39 @@ SECRET_KEY=your-super-secret-key-here-change-in-production
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1,.ngrok-free.app
 
-# Database (PostgreSQL for production, SQLite for development)
-# For PostgreSQL:
+# Database (SQLite used by default; set DATABASE_URL for PostgreSQL)
 DATABASE_URL=postgresql://user:password@localhost:5432/kazipay_db
-# For SQLite (default if DATABASE_URL not set):
-# Will use db.sqlite3 in backend-app directory
 
-# CORS Settings
-CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000,https://kazi-pay-five.vercel.app
-CORS_ALLOW_ALL_ORIGINS=False
+# CORS — add any additional origins beyond the hardcoded defaults
+EXTRA_CORS_ORIGINS=https://your-custom-frontend.vercel.app
 
-# CSRF Trusted Origins (for production and ngrok testing)
-CSRF_TRUSTED_ORIGINS=https://your-production-domain.com,https://your-ngrok-url.ngrok-free.app
-
-# M-Pesa/Daraja API Configuration
+# M-Pesa / Daraja API
 MPESA_ENVIRONMENT=sandbox
-# Get from https://developer.safaricom.co.ke/
-MPESA_CONSUMER_KEY=your_mpesa_consumer_key_here
-MPESA_CONSUMER_SECRET=your_mpesa_consumer_secret_here
+MPESA_CONSUMER_KEY=your_consumer_key
+MPESA_CONSUMER_SECRET=your_consumer_secret
 MPESA_SHORTCODE=174379
-MPESA_PASSKEY=your_mpesa_passkey_here
+MPESA_PASSKEY=your_mpesa_passkey
 MPESA_INITIATOR_NAME=testapi
-MPESA_SECURITY_CREDENTIAL=your_security_credential_here
+MPESA_SECURITY_CREDENTIAL=your_security_credential
+MPESA_B2C_SHORTCODE=600981
 
 # M-Pesa Callback URLs (must be publicly accessible HTTPS URLs)
-MPESA_C2B_CALLBACK_URL=https://your-domain.com/api/escrow/mpesa-callback
-MPESA_B2C_CALLBACK_URL=https://your-domain.com/api/wallet/b2c-callback
-MPESA_B2C_TIMEOUT_URL=https://your-domain.com/api/wallet/b2c-callback
+MPESA_C2B_CALLBACK_URL=https://your-domain.com/api/escrow/mpesa-callback/
+MPESA_B2C_CALLBACK_URL=https://your-domain.com/wallet/b2c-callback/
+MPESA_B2C_TIMEOUT_URL=https://your-domain.com/wallet/b2c-callback/
 
-# Africa's Talking Configuration
+# Africa's Talking
 AT_USERNAME=sandbox
-# Get from https://africastalking.com/
-AT_API_KEY=your_africas_talking_api_key_here
+AT_API_KEY=your_africas_talking_api_key
 AT_PHONE_NUMBER=your_shortcode_or_sender_id
 AT_SHORTCODE=23440
 ```
 
-### Frontend (.env.example)
-
-Create a `.env` file in `frontend-app/` with:
+### Frontend (`frontend-app/.env`)
 
 ```env
-# API Base URL
-VITE_API_BASE_URL=http://localhost:8000/api
-# For production:
-# VITE_API_BASE_URL=https://your-backend-domain.com/api
+# Point to your backend — leave empty to use Vite proxy in development
+VITE_API_URL=https://kazi-pay.onrender.com
 ```
 
 ### Getting API Credentials
@@ -334,7 +332,7 @@ VITE_API_BASE_URL=http://localhost:8000/api
 1. **M-Pesa Daraja API**
    - Sign up at [https://developer.safaricom.co.ke/](https://developer.safaricom.co.ke/)
    - Create an app to get Consumer Key and Consumer Secret
-   - Use sandbox credentials for testing (Shortcode: 174379)
+   - Sandbox shortcode: `174379`
 
 2. **Africa's Talking**
    - Sign up at [https://africastalking.com/](https://africastalking.com/)
@@ -347,53 +345,77 @@ VITE_API_BASE_URL=http://localhost:8000/api
 
 ### Local Testing
 
-1. Start the backend server on port 8000
-2. Start the frontend server on port 5173
-3. Use the test accounts provided above to log in
-4. Test the complete flow:
-   - **As Client (amina_client):**
-     - Post a new job
-     - Wait for a bid from brian_plumber
-     - Accept the bid
-     - Confirm STK Push on your phone (in sandbox, use test credentials)
-     - After worker marks complete, release the funds
-   - **As Worker (brian_plumber):**
-     - Browse available jobs
-     - Submit a bid on amina_client's job
-     - Wait for acceptance
-     - Mark the job as complete
-     - Check wallet for received payment
+1. Start the backend: `python manage.py runserver`
+2. Start the frontend: `npm run dev`
+3. Open `http://localhost:5173`
+4. Register two accounts — one as **Client**, one as **Worker**
+
+**As Client:**
+
+- Post a new job (title, description, budget)
+- Wait for a bid from the worker
+- Accept the bid → escrow created
+- After worker marks complete, release the funds
+
+**As Worker:**
+
+- Browse available jobs
+- Submit a bid with a proposal and amount
+- Wait for acceptance
+- Mark the job as complete
+- Check wallet for received payment → withdraw to M-Pesa
 
 ### Using Ngrok for M-Pesa Callbacks
 
-M-Pesa requires public HTTPS URLs for callbacks. Use ngrok during development:
+M-Pesa requires public HTTPS URLs for callbacks. Use ngrok during local development:
 
 ```bash
-# Install ngrok
-npm install -g ngrok
-
 # Expose Django server
 ngrok http 8000
 
 # Copy the HTTPS URL and update your .env:
-MPESA_C2B_CALLBACK_URL=https://your-ngrok-url.ngrok-free.app/api/escrow/mpesa-callback
-CSRF_TRUSTED_ORIGINS=https://your-ngrok-url.ngrok-free.app
-
-# Restart Django server to apply changes
+MPESA_C2B_CALLBACK_URL=https://your-ngrok-url.ngrok-free.app/api/escrow/mpesa-callback/
+MPESA_B2C_CALLBACK_URL=https://your-ngrok-url.ngrok-free.app/wallet/b2c-callback/
 ```
+
+---
+
+## API Reference
+
+All endpoints require `Authorization: Bearer <access_token>` except registration, login, and M-Pesa callbacks.
+
+| Method | Endpoint                                       | Description                      |
+| ------ | ---------------------------------------------- | -------------------------------- |
+| POST   | `/api/auth/register/`                          | Register (phone, password, role) |
+| POST   | `/api/auth/login/`                             | Login with phone number          |
+| GET    | `/api/client/jobs/`                            | List client's jobs               |
+| POST   | `/api/client/jobs/`                            | Post a new job                   |
+| POST   | `/api/client/jobs/{id}/accept-bid/`            | Accept a worker's bid            |
+| GET    | `/api/worker/browse-jobs/`                     | Browse open jobs                 |
+| POST   | `/api/worker/my-bids/`                         | Place a bid                      |
+| POST   | `/api/worker/my-bids/{id}/mark-complete/`      | Mark job as complete             |
+| GET    | `/api/escrow/transactions/`                    | List escrow transactions         |
+| POST   | `/api/escrow/transactions/{id}/release-funds/` | Release funds to worker          |
+| POST   | `/api/escrow/transactions/{id}/raise-dispute/` | Raise a dispute                  |
+| GET    | `/api/wallet/wallet/`                          | Get wallet balance + history     |
+| POST   | `/api/wallet/wallet/withdraw/`                 | Withdraw to M-Pesa               |
+| GET    | `/api/notifications/`                          | List notifications               |
+| POST   | `/api/notifications/{id}/mark_as_read/`        | Mark notification as read        |
+
+Full interactive documentation: [swagger](https://kazi-pay.onrender.com/swagger/) · [redoc](https://kazi-pay.onrender.com/redoc/)
 
 ---
 
 ## Team Lynx
 
-| Name | Role |
-|------|------|
-| Joseph Omondi | Backend Developer |
-| Wendy Okoth | Backend Developer |
-| Susan Awori | Frontend Developer |
-| John Chiwai | M-Pesa Integration Specialist |
-| Gavin Chesebe | Documentation & Presentation |
+| Name          | Role                          |
+| ------------- | ----------------------------- |
+| Joseph Omondi | Backend Developer             |
+| Wendy Okoth   | Backend Developer             |
+| Susan Awori   | Frontend Developer            |
+| John Chiwai   | M-Pesa Integration Specialist |
+| Gavin Chesebe | Documentation & Presentation  |
 
 ---
 
-Built for M‑Pesa Africa x GOMYCODE Kenya Hackathon 2026 – *Money in Motion*
+Built for M‑Pesa Africa x GOMYCODE Kenya Hackathon 2026 – _Money in Motion_
