@@ -9,17 +9,17 @@ KaziPay is an escrow platform for Kenya’s gig economy – currently under deve
 
 
 
-## 📌 Problem
+##  Problem
 
 Kenya’s informal workers (5M+) face a two‑sided trust gap: workers fear non‑payment; clients fear paying upfront for poor work.
 
-## 💡 Solution
+##  Solution
 
 We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Clients deposit funds, workers accept jobs, and payment is released only after client confirmation.
 
 
 
-## 🛠️ Tech Stack (Planned)
+##  Tech Stack (Planned)
 
 | Category | Technology |
 |----------|------------|
@@ -30,28 +30,28 @@ We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Cl
 | SMS      | Africa’s Talking |
 
 
-## 🌟 Core Features
+##  Core Features
 
-- 🔐 **Secure Authentication** – Register/login with phone number (OTP) or email/password. JWT tokens secure all API requests. Roles: Client, Worker, or Both.
+-  **Secure Authentication** – Register/login with phone number (OTP) or email/password. JWT tokens secure all API requests. Roles: Client, Worker, or Both.
 
-- 💰 **M‑Pesa Escrow Payments** – Clients pay via STK Push; funds are held until the job is completed. Workers receive payment instantly via B2C after client confirmation.
+-  **M‑Pesa Escrow Payments** – Clients pay via STK Push; funds are held until the job is completed. Workers receive payment instantly via B2C after client confirmation.
 
-- 📋 **Job Management** – Clients post jobs with description, amount, and target worker. Workers view and accept available jobs. Clients confirm completion to release payment.
+-  **Job Management** – Clients post jobs with description, amount, and target worker. Workers view and accept available jobs. Clients confirm completion to release payment.
 
-- 📨 **Real‑time SMS Notifications** – Africa’s Talking sends SMS updates at every key step: payment received, job accepted, payment released.
+-  **Real‑time SMS Notifications** – Africa’s Talking sends SMS updates at every key step: payment received, job accepted, payment released.
 
-- ⏱️ **Auto‑Release Mechanism** – If the client does not confirm within 48 hours of worker acceptance, the system automatically pays the worker (protects workers from unresponsive clients).
+-  **Auto‑Release Mechanism** – If the client does not confirm within 48 hours of worker acceptance, the system automatically pays the worker (protects workers from unresponsive clients).
 
-- 🧾 **Transaction History** – Every deposit and payout is logged in a transaction model for full transparency.
+-  **Transaction History** – Every deposit and payout is logged in a transaction model for full transparency.
 
-- 👥 **Dual‑Role Dashboards** – Separate interfaces for clients (post jobs, track active jobs, confirm completion) and workers (browse available jobs, see accepted jobs, track earnings).
+-  **Dual‑Role Dashboards** – Separate interfaces for clients (post jobs, track active jobs, confirm completion) and workers (browse available jobs, see accepted jobs, track earnings).
 
-- 📱 **Responsive Web Interface** – Built with React and Tailwind CSS, works seamlessly on desktop and mobile.
+-  **Responsive Web Interface** – Built with React and Tailwind CSS, works seamlessly on desktop and mobile.
 
   
 ---
 
-## 👥 Team
+##  Team Lynx
 
 | Name | Role |
 |------|------|
@@ -61,7 +61,7 @@ We’re building a web‑based escrow system using M‑Pesa STK Push and B2C. Cl
 | John Chiwai | M‑Pesa Integration |
 | Gavin Chesebe | Documentation & Presentation |
 
-## 🏗️ **Project Structure**
+##  **Project Structure**
 ```text
 kazipay/
 ├── backend/                 # Django project
@@ -110,7 +110,7 @@ kazipay/
 ├── LICENSE
 └── README.md
 ```
-## 🚧 Status
+##  Status
 
 The project is being actively developed. This README will be updated with:
 
