@@ -1,7 +1,297 @@
-<h2>Secure Payment</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payment - Kazi Pay</title>
 
-<p>Amount: Ksh <span id="amount"></span></p>
+    <style>
+      :root {
+        --green-dark: #002a00;
+        --green-mid: #004d00;
+        --green-light: #e8f5e8;
+        --orange: #ff8c00;
+        --orange-hover: #e07800;
+        --gold: #d4af37;
+        --gold-light: #fff8dc;
+        --white: #ffffff;
+        --grey-100: #f7f7f5;
+        --grey-200: #ececea;
+        --grey-400: #9b9b96;
+        --grey-700: #3d3d38;
+        --black: #111110;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --transition: 0.22s ease;
+      }
 
-<button onclick="payNow()">Pay Now</button>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--grey-100);
+        color: var(--grey-700);
+        min-height: 100vh;
+        font-size: 15px;
+        line-height: 1.6;
+      }
 
-<p id="status"></p>
+      /* ── Nav ── */
+      nav {
+        background: var(--green-dark);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 64px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--gold);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--green-dark);
+        letter-spacing: -0.5px;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: var(--white);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .nav-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        transition: var(--transition);
+      }
+      .avatar:hover {
+        border-color: var(--gold);
+      }
+
+      /* ===== PAYMENT SECTION ===== */
+      .payment-container {
+        display: flex;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+
+      .payment-card {
+        background: var(--white);
+        padding: 30px;
+        width: 400px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+        border: 1px solid var(--grey-300);
+      }
+
+      .payment-card h2 {
+        color: var(--green-dark);
+        margin-bottom: 10px;
+      }
+
+      .decor-line {
+        height: 3px;
+        background: var(--gold);
+        margin: 15px auto 25px;
+        width: 60px;
+        border-radius: 5px;
+      }
+
+      /* ===== TEXT ===== */
+      .note {
+        color: var(--grey-600);
+        font-size: 14px;
+        margin: 15px 0;
+      }
+
+      /* ===== BUTTONS ===== */
+      button {
+        padding: 12px 18px;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 10px 5px;
+        transition: var(--transition);
+      }
+
+      .primary-btn {
+        background: var(--orange);
+        color: white;
+      }
+
+      .primary-btn:hover {
+        background: var(--orange-hover);
+      }
+
+      .secondary-btn {
+        background: var(--green-dark);
+        color: white;
+      }
+
+      .secondary-btn:hover {
+        background: var(--gold);
+        color: var(--green-dark);
+      }
+
+      /* ===== STATUS ===== */
+      .status {
+        margin: 15px 0;
+        font-weight: bold;
+      }
+
+      .status.pending {
+        color: var(--orange);
+      }
+
+      .status.hold {
+        color: var(--gold);
+      }
+
+      .status.success {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-inner">
+        <a class="logo" href="index.html">
+          <div class="logo-mark">K</div>
+          <span class="logo-text">Kazi Pay</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="market.html">Market</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+          <span class="pulse"></span>
+          <div class="avatar" title="Your account">SO</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAYMENT -->
+    <section class="payment-container">
+      <div class="payment-card">
+        <h2>Secure Payment</h2>
+        <div class="decor-line"></div>
+
+        <p><strong>Item:</strong> Bonjour Curls</p>
+        <p><strong>Amount:</strong> Ksh <span id="amount">2000</span></p>
+
+        <p class="note">
+          Your payment is securely held and only released after delivery
+          confirmation.
+        </p>
+
+        <button class="primary-btn" onclick="payNow()">Pay & Hold Funds</button>
+
+        <p id="status" class="status pending">Waiting for payment...</p>
+
+        <button class="secondary-btn" onclick="confirmDelivery()">
+          Confirm Delivery
+        </button>
+      </div>
+    </section>
+
+    <script>
+      function payNow() {
+        const status = document.getElementById("status");
+
+        status.textContent = "Processing payment...";
+        status.className = "status pending";
+
+        setTimeout(() => {
+          status.textContent = "Payment held securely (Escrow)";
+          status.className = "status hold";
+        }, 1200);
+      }
+
+      function confirmDelivery() {
+        const status = document.getElementById("status");
+
+        status.textContent = "Payment released successfully ✅";
+        status.className = "status success";
+      }
+    </script>
+  </body>
+</html>
