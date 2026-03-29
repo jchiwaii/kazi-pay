@@ -219,7 +219,11 @@ kazipay/
 - Safaricom Daraja sandbox credentials
 - Africa’s Talking sandbox credentials
 
+### Backend (Django)
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+cp .env.example .env
 
-
-
-Built for M‑Pesa Africa x GOMYCODE Kenya Hackathon 2026 – *Money in Motion*
