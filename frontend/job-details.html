@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Details — Kazi Pay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green-dark: #002a00;
+        --green-mid: #004d00;
+        --green-light: #e8f5e8;
+        --orange: #ff8c00;
+        --orange-hover: #e07800;
+        --gold: #d4af37;
+        --gold-light: #fff8dc;
+        --white: #ffffff;
+        --grey-100: #f7f7f5;
+        --grey-200: #ececea;
+        --grey-300: #d5d5d0;
+        --grey-400: #9b9b96;
+        --grey-700: #3d3d38;
+        --blue: #1a6fa8;
+        --blue-light: #e8f2fa;
+        --black: #111110;
+        --red: #c0392b;
+        --red-light: #fdecea;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --transition: 0.22s ease;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--grey-100);
+        color: var(--grey-700);
+        min-height: 100vh;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* ── Nav ── */
+      nav {
+        background: var(--green-dark);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 64px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--gold);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--green-dark);
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: var(--white);
+        font-weight: 600;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .nav-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        transition: var(--transition);
+      }
+      .pulse {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(212, 175, 55, 0);
+        }
+      }
+
+      /* ── Hero ── */
+      .hero {
+        background: var(--green-dark);
+        padding: 32px 24px 70px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -40px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 18px;
+      }
+      .breadcrumb a {
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+      .breadcrumb a:hover {
+        color: var(--gold);
+      }
+      .breadcrumb span {
+        font-size: 10px;
+      }
+
+      .hero-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .hero-left {
+        flex: 1;
+        min-width: 260px;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(22px, 3.5vw, 34px);
+        color: var(--white);
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .meta-item strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+      }
+      .meta-dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* Status badge in hero */
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        border-radius: 20px;
+        padding: 6px 14px;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+      .hero-badge.pending {
+        background: rgba(255, 140, 0, 0.18);
+        color: #ffb347;
+        border: 1px solid rgba(255, 140, 0, 0.3);
+      }
+      .hero-badge.pending::before {
+        background: var(--orange);
+      }
+      .hero-badge.in-progress {
+        background: rgba(26, 111, 168, 0.2);
+        color: #6bbde0;
+        border: 1px solid rgba(26, 111, 168, 0.3);
+      }
+      .hero-badge.in-progress::before {
+        background: #6bbde0;
+      }
+      .hero-badge.completed {
+        background: rgba(0, 77, 0, 0.3);
+        color: #7dda58;
+        border: 1px solid rgba(0, 150, 0, 0.3);
+      }
+      .hero-badge.completed::before {
+        background: #7dda58;
+      }
+
+      /* Urgent chip */
+      .urgent-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(255, 140, 0, 0.15);
+        border: 1px solid rgba(255, 140, 0, 0.3);
+        color: #ffb347;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.4px;
+      }
+
+      /* ── Page Layout ── */
+      .page-body {
+        max-width: 1100px;
+        margin: -38px auto 0;
+        padding: 0 24px 60px;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 22px;
+      }
+
+      /* ── Cards ── */
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--grey-200);
+        overflow: hidden;
+        margin-bottom: 18px;
+        animation: fadeUp 0.38s ease both;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.18s;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card-head {
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--grey-200);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--grey-400);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card-head-icon {
+        font-size: 15px;
+      }
+      .card-body {
+        padding: 22px;
+      }
+
+      /* ── Description ── */
+      .job-description {
+        font-size: 14px;
+        color: var(--grey-700);
+        line-height: 1.75;
+        white-space: pre-wrap;
+      }
+
+      /* ── Tags ── */
+      .tags-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .tag {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 12px;
+        background: var(--green-light);
+        color: var(--green-dark);
+        border-radius: 20px;
+        border: 1px solid rgba(0, 77, 0, 0.2);
+      }
+
+      /* ── Deliverables ── */
+      .deliverable-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .deliverable-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--grey-700);
+        padding: 10px 14px;
+        background: var(--grey-100);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--grey-200);
+      }
+      .deliverable-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* ── Timeline / Escrow Steps ── */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .tl-step {
+        display: flex;
+        gap: 14px;
+        position: relative;
+      }
+      .tl-step + .tl-step {
+        margin-top: 0;
+      }
+      .tl-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 32px;
+        flex-shrink: 0;
+      }
+      .tl-dot {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        z-index: 1;
+      }
+      .tl-dot.done {
+        background: var(--green-light);
+        border: 2px solid var(--green-mid);
+      }
+      .tl-dot.active {
+        background: var(--gold-light);
+        border: 2px solid var(--gold);
+      }
+      .tl-dot.todo {
+        background: var(--grey-100);
+        border: 2px dashed var(--grey-300);
+      }
+      .tl-line {
+        flex: 1;
+        width: 2px;
+        background: var(--grey-200);
+        margin: 4px 0;
+        min-height: 24px;
+      }
+      .tl-step:last-child .tl-line {
+        display: none;
+      }
+      .tl-content {
+        padding: 4px 0 20px;
+        flex: 1;
+      }
+      .tl-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 2px;
+      }
+      .tl-desc {
+        font-size: 12px;
+        color: var(--grey-400);
+        line-height: 1.5;
+      }
+      .tl-date {
+        font-size: 11px;
+        color: var(--gold);
+        font-weight: 600;
+        margin-top: 3px;
+      }
+
+      /* ── Apply / Action Panel (sidebar) ── */
+      .action-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--grey-200);
+        overflow: hidden;
+        position: sticky;
+        top: 84px;
+        animation: fadeUp 0.38s ease both;
+      }
+      .action-card-head {
+        background: var(--green-dark);
+        padding: 18px 20px;
+      }
+      .action-price {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1;
+      }
+      .action-price sup {
+        font-size: 16px;
+        font-family: var(--font-body);
+        vertical-align: super;
+      }
+      .action-price-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+      }
+      .action-card-body {
+        padding: 18px 20px;
+      }
+
+      /* Info rows in action card */
+      .info-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--grey-200);
+        font-size: 13px;
+      }
+      .info-row:last-of-type {
+        border-bottom: none;
+      }
+      .info-label {
+        color: var(--grey-400);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .info-value {
+        font-weight: 600;
+        color: var(--black);
+      }
+      .info-value.gold {
+        color: var(--gold);
+      }
+
+      /* Escrow trust strip */
+      .trust-strip {
+        background: var(--green-light);
+        border: 1px solid rgba(0, 77, 0, 0.15);
+        border-radius: var(--radius-sm);
+        padding: 12px 14px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 12px;
+        color: var(--green-mid);
+        margin: 14px 0;
+        line-height: 1.5;
+      }
+      .trust-strip .icon {
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        padding: 12px 20px;
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+        text-decoration: none;
+        width: 100%;
+      }
+      .btn + .btn {
+        margin-top: 8px;
+      }
+      .btn-primary {
+        background: var(--orange);
+        color: var(--white);
+      }
+      .btn-primary:hover {
+        background: var(--orange-hover);
+        box-shadow: 0 4px 14px rgba(255, 140, 0, 0.35);
+      }
+      .btn-primary:disabled {
+        opacity: 0.5;
+        cursor: default;
+        box-shadow: none;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--green-dark);
+        border: 1.5px solid var(--green-dark);
+      }
+      .btn-outline:hover {
+        background: var(--green-dark);
+        color: var(--white);
+      }
+      .btn-ghost {
+        background: var(--grey-100);
+        color: var(--grey-700);
+        border: 1.5px solid var(--grey-200);
+      }
+      .btn-ghost:hover {
+        border-color: var(--grey-400);
+        color: var(--black);
+      }
+      .btn-gold {
+        background: var(--gold-light);
+        color: #7a6010;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+      }
+      .btn-gold:hover {
+        background: var(--gold);
+        color: var(--white);
+      }
+
+      /* ── Poster Profile block ── */
+      .poster-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        border-top: 1px solid var(--grey-200);
+      }
+      .poster-avatar-lg {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--gold-light);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: 16px;
+        border: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .poster-info {
+        flex: 1;
+      }
+      .poster-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--black);
+      }
+      .poster-joined {
+        font-size: 12px;
+        color: var(--grey-400);
+      }
+      .poster-rating {
+        font-size: 12px;
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      /* ── Apply modal ── */
+      #apply-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 42, 0, 0.8);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #apply-modal.show {
+        display: flex;
+      }
+      .modal-box {
+        background: var(--white);
+        border-radius: var(--radius);
+        width: 100%;
+        max-width: 520px;
+        box-shadow: var(--shadow-lg);
+        animation: popIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        overflow: hidden;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0.88);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .modal-head {
+        background: var(--green-dark);
+        padding: 18px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-head h3 {
+        font-family: var(--font-display);
+        font-size: 18px;
+        color: var(--white);
+      }
+      .modal-close {
+        background: rgba(255, 255, 255, 0.12);
+        border: none;
+        cursor: pointer;
+        color: var(--white);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .modal-body {
+        padding: 22px;
+      }
+      .modal-field {
+        margin-bottom: 16px;
+      }
+      .modal-field label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .modal-field input,
+      .modal-field textarea,
+      .modal-field select {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1.5px solid var(--grey-200);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--black);
+        background: var(--grey-100);
+        outline: none;
+        transition: var(--transition);
+        appearance: none;
+      }
+      .modal-field input:focus,
+      .modal-field textarea:focus,
+      .modal-field select:focus {
+        border-color: var(--gold);
+        background: var(--white);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+      .modal-field textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .modal-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .modal-foot {
+        padding: 14px 22px;
+        background: var(--grey-100);
+        border-top: 1px solid var(--grey-200);
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      .btn-sm {
+        padding: 9px 16px;
+        font-size: 12px;
+        width: auto;
+      }
+
+      /* ── Success overlay ── */
+      #success-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        background: rgba(0, 42, 0, 0.85);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      #success-overlay.show {
+        display: flex;
+      }
+      .success-box {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 40px 36px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: var(--shadow-lg);
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .success-icon {
+        font-size: 52px;
+        margin-bottom: 14px;
+      }
+      .success-box h2 {
+        font-family: var(--font-display);
+        font-size: 22px;
+        color: var(--black);
+        margin-bottom: 8px;
+      }
+      .success-box p {
+        font-size: 13px;
+        color: var(--grey-400);
+        margin-bottom: 22px;
+        line-height: 1.6;
+      }
+      .success-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .success-actions .btn {
+        width: auto;
+      }
+
+      /* ── Toast ── */
+      #toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--green-dark);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 12px 20px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-left: 3px solid var(--gold);
+      }
+      #toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ── Skeleton loader ── */
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          var(--grey-200) 25%,
+          var(--grey-100) 50%,
+          var(--grey-200) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.4s infinite;
+        border-radius: 6px;
+        display: block;
+      }
+      @keyframes shimmer {
+        to {
+          background-position: -200% 0;
+        }
+      }
+
+      /* ── Not found ── */
+      .not-found {
+        text-align: center;
+        padding: 72px 24px;
+        grid-column: 1 / -1;
+      }
+      .not-found .icon {
+        font-size: 52px;
+        margin-bottom: 16px;
+      }
+      .not-found h2 {
+        font-family: var(--font-display);
+        font-size: 22px;
+        color: var(--black);
+        margin-bottom: 8px;
+      }
+      .not-found p {
+        color: var(--grey-400);
+        font-size: 14px;
+        margin-bottom: 22px;
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        border-radius: 20px;
+        padding: 4px 10px;
+      }
+      .badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+      .badge.pending {
+        background: #fff3e0;
+        color: #c46800;
+      }
+      .badge.pending::before {
+        background: var(--orange);
+      }
+      .badge.in-progress {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .badge.in-progress::before {
+        background: var(--blue);
+      }
+      .badge.completed {
+        background: var(--green-light);
+        color: var(--green-mid);
+      }
+      .badge.completed::before {
+        background: var(--green-mid);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 860px) {
+        .page-body {
+          grid-template-columns: 1fr;
+        }
+        .action-card {
+          position: static;
+        }
+      }
+      @media (max-width: 600px) {
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          padding: 24px 16px 58px;
+        }
+        .page-body {
+          padding: 0 16px 48px;
+          margin-top: -30px;
+        }
+        .hero-meta {
+          gap: 10px;
+        }
+        .modal-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAV ── -->
+    <nav>
+      <div class="nav-inner">
+        <a class="logo" href="#">
+          <div class="logo-mark">K</div>
+          <span class="logo-text">Kazi Pay</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="service.html" class="active">Services</a></li>
+          <li><a href="market.html">Market</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+          <span class="pulse"></span>
+          <div class="avatar">SO</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── HERO (populated by JS) ── -->
+    <div class="hero" id="job-hero">
+      <div class="hero-inner">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span>›</span>
+          <a href="service.html">Services</a>
+          <span>›</span>
+          <span id="bc-title">Job Details</span>
+        </div>
+        <div class="hero-top">
+          <div class="hero-left">
+            <div class="hero-eyebrow" id="hero-category">Loading…</div>
+            <h1 id="hero-title">
+              <span
+                class="skeleton"
+                style="width: 70%; height: 36px; display: block"
+              ></span>
+            </h1>
+            <div class="hero-meta" id="hero-meta"></div>
+          </div>
+          <div id="hero-badge-wrap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE BODY ── -->
+    <div class="page-body" id="page-body">
+      <!-- LEFT COLUMN -->
+      <div id="left-col">
+        <!-- Description -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-head-icon">📄</span> Job Description
+          </div>
+          <div class="card-body">
+            <p class="job-description" id="job-desc">Loading…</p>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="card" id="skills-card">
+          <div class="card-head">
+            <span class="card-head-icon">🏷</span> Required Skills
+          </div>
+          <div class="card-body">
+            <div class="tags-row" id="job-tags"></div>
+          </div>
+        </div>
+
+        <!-- Deliverables -->
+        <div class="card" id="deliverables-card">
+          <div class="card-head">
+            <span class="card-head-icon">📦</span> Deliverables
+          </div>
+          <div class="card-body">
+            <ul class="deliverable-list" id="job-deliverables"></ul>
+          </div>
+        </div>
+
+        <!-- Escrow Timeline -->
+        <div class="card">
+          <div class="card-head">
+            <span class="card-head-icon">🔐</span> Escrow Process
+          </div>
+          <div class="card-body">
+            <div class="timeline" id="escrow-timeline"></div>
+          </div>
+        </div>
+
+        <!-- Applications section (owner view) -->
+        <div class="card" id="applications-card" style="display: none">
+          <div class="card-head">
+            <span class="card-head-icon">👥</span> Applications
+            <span
+              id="app-count-badge"
+              style="
+                margin-left: auto;
+                background: var(--orange);
+                color: #fff;
+                font-size: 11px;
+                font-weight: 700;
+                padding: 2px 8px;
+                border-radius: 20px;
+              "
+            ></span>
+          </div>
+          <div class="card-body" id="applications-body"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Action card -->
+      <div id="right-col">
+        <div class="action-card">
+          <div class="action-card-head">
+            <div class="action-price" id="action-price"><sup>Ksh</sup>—</div>
+            <div class="action-price-label" id="action-price-label">
+              Fixed price · held in escrow
+            </div>
+          </div>
+          <div class="action-card-body">
+            <div class="info-row">
+              <span class="info-label">📅 Deadline</span>
+              <span class="info-value" id="info-deadline">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📂 Category</span>
+              <span class="info-value" id="info-category">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">⚙ Job Type</span>
+              <span class="info-value" id="info-type">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📌 Status</span>
+              <span class="info-value" id="info-status">—</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🕐 Posted</span>
+              <span class="info-value" id="info-posted">—</span>
+            </div>
+
+            <div class="trust-strip">
+              <span class="icon">🔐</span>
+              <span
+                >Payment is held securely in escrow and released only when you
+                confirm the work is complete.</span
+              >
+            </div>
+
+            <button
+              class="btn btn-primary"
+              id="apply-btn"
+              onclick="openApply()"
+            >
+              Apply for this Job
+            </button>
+            <button class="btn btn-ghost" onclick="shareJob()">
+              🔗 Share Job
+            </button>
+          </div>
+
+          <!-- Poster info -->
+          <div class="poster-block" id="poster-block"></div>
+        </div>
+      </div>
+    </div>
+    <!-- /page-body -->
+
+    <!-- ── APPLY MODAL ── -->
+    <div id="apply-modal">
+      <div class="modal-box">
+        <div class="modal-head">
+          <h3>Apply for Job</h3>
+          <button class="modal-close" onclick="closeApply()">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-row">
+            <div class="modal-field">
+              <label
+                >Your Bid (Ksh)
+                <span style="color: var(--orange)">*</span></label
+              >
+              <input
+                type="number"
+                id="bid-amount"
+                placeholder="e.g. 40000"
+                min="1"
+              />
+            </div>
+            <div class="modal-field">
+              <label
+                >Delivery Time
+                <span style="color: var(--orange)">*</span></label
+              >
+              <input type="text" id="bid-delivery" placeholder="e.g. 10 days" />
+            </div>
+          </div>
+          <div class="modal-field">
+            <label
+              >Cover Letter <span style="color: var(--orange)">*</span></label
+            >
+            <textarea
+              id="bid-letter"
+              placeholder="Introduce yourself, explain why you're the best fit for this job, and outline your approach…"
+              maxlength="600"
+            ></textarea>
+          </div>
+          <div class="modal-field">
+            <label
+              >Portfolio Link
+              <span
+                style="
+                  font-weight: 400;
+                  color: var(--grey-400);
+                  font-size: 12px;
+                "
+                >(optional)</span
+              ></label
+            >
+            <input
+              type="text"
+              id="bid-portfolio"
+              placeholder="https://your-portfolio.com"
+            />
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-ghost btn-sm" onclick="closeApply()">
+            Cancel
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="submitApplication()">
+            Submit Application →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SUCCESS ── -->
+    <div id="success-overlay">
+      <div class="success-box">
+        <div class="success-icon">🎉</div>
+        <h2>Application Sent!</h2>
+        <p>
+          Your application has been submitted. The client will review it and
+          reach out if you're a good fit. Funds will be held in escrow once work
+          begins.
+        </p>
+        <div class="success-actions">
+          <a href="jobs.html" class="btn btn-primary">Browse More Jobs</a>
+          <a href="dashboard.html" class="btn btn-ghost">Dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div id="toast">✅ <span id="toast-msg">Done</span></div>
+
+    <script>
+      // ── Helpers ────────────────────────────────────────────────────────
+      function $(id) {
+        return document.getElementById(id);
+      }
+      const fmt = (n) => "Ksh " + Number(n).toLocaleString("en-KE");
+
+      let toastTimer;
+      function showToast(msg, icon = "✅") {
+        $("toast").innerHTML = icon + " <span>" + msg + "</span>";
+        $("toast").classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(
+          () => $("toast").classList.remove("show"),
+          3200,
+        );
+      }
+
+      function statusKey(s) {
+        return (s || "pending").toLowerCase().replace(/\s+/g, "-");
+      }
+
+      function timeAgo(d) {
+        if (!d) return "";
+        const diff = Math.floor((Date.now() - new Date(d)) / 86400000);
+        if (diff === 0) return "Today";
+        if (diff === 1) return "Yesterday";
+        if (diff < 7) return diff + " days ago";
+        return new Date(d).toLocaleDateString("en-KE", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      }
+
+      function initials(name) {
+        return (name || "??")
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+      }
+
+      // ── Read job ID from URL ───────────────────────────────────────────
+      function getJobId() {
+        const p = new URLSearchParams(window.location.search);
+        return p.get("id");
+      }
+
+      // ── Default jobs (same seed as jobs.html) ─────────────────────────
+      const SEED_JOBS = [
+        {
+          id: "j1",
+          title: "Website Redesign — Nairobi Bakery",
+          description:
+            "We are looking for an experienced web designer to fully redesign our bakery's website.\n\nThe project includes:\n• New branding alignment (colours, fonts)\n• Mobile-first responsive layout\n• Integrated online ordering system\n• Contact page with Google Maps embed\n• Basic SEO optimisation\n\nFigma mockups will be provided. We expect clean, well-commented HTML/CSS/JS output and a smooth handover.",
+          price: 45000,
+          status: "In Progress",
+          category: "Web Design",
+          tags: ["Figma", "HTML/CSS", "Responsive", "SEO"],
+          deliverables: [
+            "Source files (HTML, CSS, JS)",
+            "Figma design file",
+            "Mobile-responsive build",
+            "Deployment to provided host",
+          ],
+          poster: "Amina K.",
+          jobType: "fixed",
+          deadline: "21 days",
+          urgent: false,
+          postedAt: new Date("2025-06-12").toISOString(),
+        },
+        {
+          id: "j2",
+          title: "Logo & Brand Identity Kit",
+          description:
+            "We need a modern, minimalist logo and full brand identity kit for a tech startup in the fintech space.\n\nScope:\n• Primary logo + icon variant\n• Colour palette guide\n• Typography specification\n• Business card mockup\n• Social media profile templates\n\nThree rounds of revisions are included. Please share a portfolio of previous branding work with your application.",
+          price: 12000,
+          status: "Pending",
+          category: "Graphic Design",
+          tags: ["Illustrator", "Branding", "Logo", "Identity"],
+          deliverables: [
+            "Logo in AI, SVG, PNG formats",
+            "Brand guidelines PDF",
+            "Social media kit",
+          ],
+          poster: "Otieno M.",
+          jobType: "fixed",
+          deadline: "10 days",
+          urgent: true,
+          postedAt: new Date("2025-06-18").toISOString(),
+        },
+        {
+          id: "j3",
+          title: "SEO Blog Copywriting — 10 Articles",
+          description:
+            "We are building content for a fintech blog and need a skilled SEO copywriter to produce 10 long-form articles.\n\nRequirements:\n• 1,500 words per article\n• Topics will be provided (personal finance, investment basics, digital payments)\n• Keyword research for each piece\n• Meta title + meta description for each article\n• Internal linking suggestions\n\nNative English speaker preferred. Samples of finance or tech writing required.",
+          price: 30000,
+          status: "Pending",
+          category: "Writing & Copywriting",
+          tags: ["SEO", "Fintech", "Long-form", "Content"],
+          deliverables: [
+            "10 articles in Google Docs",
+            "Keyword research sheet",
+            "Meta descriptions for each article",
+          ],
+          poster: "Fatuma H.",
+          jobType: "milestone",
+          deadline: "30 days",
+          urgent: false,
+          postedAt: new Date("2025-06-15").toISOString(),
+        },
+        {
+          id: "j4",
+          title: "Mobile App UI — Android Health Tracker",
+          description:
+            "Design pixel-perfect UI screens for an Android health tracking application.\n\nThe app covers:\n• User onboarding flow (5 screens)\n• Dashboard with activity overview\n• Workout logging screen\n• Nutrition tracker\n• Profile & settings\n\nTotal: 20 screens. Must follow Material Design 3 guidelines. Deliverables in Figma with auto-layout and reusable components.",
+          price: 60000,
+          status: "Pending",
+          category: "UI/UX Design",
+          tags: ["Figma", "Android", "Material Design", "Health"],
+          deliverables: [
+            "20 Figma screens",
+            "Component library",
+            "Prototype with key flows",
+            "Handoff-ready with specs",
+          ],
+          poster: "Brian N.",
+          jobType: "fixed",
+          deadline: "14 days",
+          urgent: false,
+          postedAt: new Date("2025-06-20").toISOString(),
+        },
+        {
+          id: "j5",
+          title: "Social Media Management — 3 Months",
+          description:
+            "We need an experienced social media manager for a restaurant in Westlands, Nairobi.\n\nScope (3 months):\n• Content strategy and calendar\n• 4 posts per week (Instagram + Facebook)\n• Branded graphics for each post\n• Community management (replies, DMs)\n• Monthly analytics report\n\nFood photography experience is a bonus. Please share examples of hospitality or restaurant accounts you have managed.",
+          price: 18000,
+          status: "In Progress",
+          category: "Marketing & Social Media",
+          tags: ["Instagram", "Facebook", "Content", "Strategy"],
+          deliverables: [
+            "Monthly content calendar",
+            "48 designed posts",
+            "3 analytics reports",
+            "Brand voice guide",
+          ],
+          poster: "Grace W.",
+          jobType: "milestone",
+          deadline: "90 days",
+          urgent: false,
+          postedAt: new Date("2025-06-10").toISOString(),
+        },
+        {
+          id: "j6",
+          title: "Python Data Analysis Script",
+          description:
+            "Write a Python automation script to process monthly CSV sales data, generate summary statistics, and export a formatted Excel report.\n\nRequirements:\n• Read multiple CSV files from a folder\n• Clean and normalise data (handle missing values)\n• Generate: total revenue, top products, sales by region\n• Export styled Excel report using OpenPyXL\n• Include comments and a README\n\nStack: Python 3.11+, Pandas, OpenPyXL. GitHub repo delivery preferred.",
+          price: 22000,
+          status: "Completed",
+          category: "Data & Analytics",
+          tags: ["Python", "Pandas", "Excel", "Automation"],
+          deliverables: [
+            "Python script (.py)",
+            "README.md",
+            "Sample output Excel file",
+            "GitHub repo link",
+          ],
+          poster: "John M.",
+          jobType: "fixed",
+          deadline: "7 days",
+          urgent: false,
+          postedAt: new Date("2025-06-05").toISOString(),
+        },
+      ];
+
+      function getAllJobs() {
+        try {
+          return JSON.parse(localStorage.getItem("kazi_jobs")) || SEED_JOBS;
+        } catch {
+          return SEED_JOBS;
+        }
+      }
+
+      function findJob(id) {
+        return getAllJobs().find((j) => j.id === id) || null;
+      }
+
+      // ── Escrow timeline steps by status ───────────────────────────────
+      function buildTimeline(status) {
+        const k = statusKey(status);
+        const steps = [
+          {
+            icon: "📋",
+            title: "Job Posted",
+            desc: "Client posted the job and set the budget.",
+            state: "done",
+          },
+          {
+            icon: "🤝",
+            title: "Freelancer Hired",
+            desc: "Client selected a freelancer and agreed on terms.",
+            state: k === "pending" ? "todo" : "done",
+          },
+          {
+            icon: "💰",
+            title: "Funds in Escrow",
+            desc: "Payment is deposited and held securely by Kazi.",
+            state:
+              k === "pending"
+                ? "todo"
+                : k === "in-progress"
+                  ? "active"
+                  : "done",
+          },
+          {
+            icon: "🛠",
+            title: "Work in Progress",
+            desc: "Freelancer is working on the deliverables.",
+            state:
+              k === "in-progress"
+                ? "active"
+                : k === "completed"
+                  ? "done"
+                  : "todo",
+          },
+          {
+            icon: "✅",
+            title: "Completion Review",
+            desc: "Client reviews delivered work before releasing funds.",
+            state: k === "completed" ? "active" : "todo",
+          },
+          {
+            icon: "💸",
+            title: "Payment Released",
+            desc: "Client confirms — funds transferred to freelancer.",
+            state: "todo",
+          },
+        ];
+        if (k === "completed") steps[5].state = "done";
+
+        return steps
+          .map(
+            (s) => `
+    <div class="tl-step">
+      <div class="tl-left">
+        <div class="tl-dot ${s.state}">${s.icon}</div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">${s.title}</div>
+        <div class="tl-desc">${s.desc}</div>
+      </div>
+    </div>`,
+          )
+          .join("");
+      }
+
+      // ── Build hero badge ───────────────────────────────────────────────
+      function heroBadge(status) {
+        const k = statusKey(status);
+        return `<span class="hero-badge ${k}">${status}</span>`;
+      }
+
+      // ── Render full page ───────────────────────────────────────────────
+      function renderPage(job) {
+        const k = statusKey(job.status);
+
+        // Breadcrumb
+        $("bc-title").textContent =
+          job.title.length > 40 ? job.title.slice(0, 40) + "…" : job.title;
+
+        // Hero
+        $("hero-category").textContent = job.category || "General";
+        $("hero-title").textContent = job.title;
+        $("hero-badge-wrap").innerHTML =
+          (job.urgent
+            ? '<span class="urgent-chip" style="margin-bottom:8px;display:inline-flex">🔥 Urgent</span><br>'
+            : "") + heroBadge(job.status);
+
+        const jobTypeLabel =
+          {
+            fixed: "Fixed Price",
+            milestone: "Milestones",
+            hourly: "Hourly Rate",
+          }[job.jobType] || "Fixed Price";
+        $("hero-meta").innerHTML = `
+    <div class="meta-item">👤 <strong>${job.poster || "Anonymous"}</strong></div>
+    <div class="meta-dot"></div>
+    <div class="meta-item">🕐 <strong>${timeAgo(job.postedAt)}</strong></div>
+    <div class="meta-dot"></div>
+    <div class="meta-item">⚙ <strong>${jobTypeLabel}</strong></div>
+    <div class="meta-dot"></div>
+    <div class="meta-item">📅 Deadline: <strong>${job.deadline || "TBD"}</strong></div>`;
+
+        // Description
+        $("job-desc").textContent =
+          job.description || "No description provided.";
+
+        // Tags
+        const tagsEl = $("job-tags");
+        if (job.tags && job.tags.length) {
+          tagsEl.innerHTML = job.tags
+            .map((t) => `<span class="tag">${t}</span>`)
+            .join("");
+        } else {
+          $("skills-card").style.display = "none";
+        }
+
+        // Deliverables
+        const delEl = $("job-deliverables");
+        if (job.deliverables && job.deliverables.length) {
+          delEl.innerHTML = job.deliverables
+            .map(
+              (d) => `
+      <li class="deliverable-item">
+        <span class="deliverable-icon">📎</span>
+        <span>${d}</span>
+      </li>`,
+            )
+            .join("");
+        } else {
+          $("deliverables-card").style.display = "none";
+        }
+
+        // Timeline
+        $("escrow-timeline").innerHTML = buildTimeline(job.status);
+
+        // Action card
+        $("action-price").innerHTML =
+          "<sup>Ksh</sup>" + Number(job.price).toLocaleString("en-KE");
+        $("action-price-label").textContent =
+          jobTypeLabel + " · held in escrow";
+        $("info-deadline").textContent = job.deadline || "TBD";
+        $("info-category").textContent = job.category || "—";
+        $("info-type").textContent = jobTypeLabel;
+        $("info-status").innerHTML =
+          `<span class="badge ${k}">${job.status}</span>`;
+        $("info-posted").textContent = timeAgo(job.postedAt);
+
+        // Disable apply if not pending
+        const applyBtn = $("apply-btn");
+        if (k !== "pending") {
+          applyBtn.disabled = true;
+          applyBtn.textContent =
+            k === "in-progress" ? "⏳ Already In Progress" : "✅ Job Completed";
+        }
+
+        // Poster block
+        $("poster-block").innerHTML = `
+    <div class="poster-avatar-lg">${initials(job.poster)}</div>
+    <div class="poster-info">
+      <div class="poster-name">${job.poster || "Anonymous"}</div>
+      <div class="poster-joined">Member since 2024</div>
+      <div class="poster-rating">★★★★★ 4.9 (23 reviews)</div>
+    </div>`;
+
+        // Applications (show for demo — always visible)
+        renderApplications(job.id);
+      }
+
+      // ── Applications ───────────────────────────────────────────────────
+      function getApplications(jobId) {
+        try {
+          return JSON.parse(localStorage.getItem("kazi_apps_" + jobId)) || [];
+        } catch {
+          return [];
+        }
+      }
+
+      function renderApplications(jobId) {
+        const apps = getApplications(jobId);
+        const card = $("applications-card");
+        const body = $("applications-body");
+
+        card.style.display = "block";
+        $("app-count-badge").textContent = apps.length;
+
+        if (!apps.length) {
+          body.innerHTML =
+            '<p style="font-size:14px;color:var(--grey-400);text-align:center;padding:16px 0">No applications yet. Be the first to apply!</p>';
+          return;
+        }
+
+        body.innerHTML = apps
+          .map(
+            (a, i) => `
+    <div style="padding:14px 0;border-bottom:1px solid var(--grey-200);${i === apps.length - 1 ? "border-bottom:none" : ""}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--green-light);color:var(--green-dark);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;border:1.5px solid rgba(0,77,0,.2)">${initials(a.name)}</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--black)">${a.name}</div>
+          <div style="font-size:11px;color:var(--grey-400)">${timeAgo(a.submittedAt)}</div>
+        </div>
+        <div style="margin-left:auto;font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--green-dark)">${fmt(a.bid)}</div>
+      </div>
+      <div style="font-size:13px;color:var(--grey-700);line-height:1.6;margin-bottom:8px">${a.letter}</div>
+      <div style="font-size:12px;color:var(--grey-400)">Delivery: <strong style="color:var(--black)">${a.delivery}</strong></div>
+    </div>`,
+          )
+          .join("");
+      }
+
+      // ── Apply modal ────────────────────────────────────────────────────
+      function openApply() {
+        $("apply-modal").classList.add("show");
+      }
+      function closeApply() {
+        $("apply-modal").classList.remove("show");
+      }
+
+      $("apply-modal").addEventListener("click", (e) => {
+        if (e.target === $("apply-modal")) closeApply();
+      });
+
+      function submitApplication() {
+        const bid = $("bid-amount").value.trim();
+        const delivery = $("bid-delivery").value.trim();
+        const letter = $("bid-letter").value.trim();
+
+        if (!bid || !delivery || letter.length < 20) {
+          showToast("Please fill in all required fields", "⚠️");
+          return;
+        }
+
+        const jobId = getJobId();
+        const apps = getApplications(jobId);
+
+        apps.push({
+          name: "James M.",
+          bid: parseFloat(bid),
+          delivery,
+          letter,
+          portfolio: $("bid-portfolio").value.trim(),
+          submittedAt: new Date().toISOString(),
+        });
+
+        localStorage.setItem("kazi_apps_" + jobId, JSON.stringify(apps));
+
+        closeApply();
+        $("success-overlay").classList.add("show");
+      }
+
+      // ── Share ──────────────────────────────────────────────────────────
+      function shareJob() {
+        const url = window.location.href;
+        if (navigator.clipboard) {
+          navigator.clipboard
+            .writeText(url)
+            .then(() => showToast("Link copied to clipboard", "🔗"));
+        } else {
+          showToast("Copy the URL from your address bar", "🔗");
+        }
+      }
+
+      // ── Not found state ────────────────────────────────────────────────
+      function renderNotFound() {
+        $("job-hero").style.display = "none";
+        $("page-body").innerHTML = `
+    <div class="not-found">
+      <div class="icon">🔍</div>
+      <h2>Job Not Found</h2>
+      <p>This job listing may have been removed or the link is incorrect.</p>
+      <a href="jobs.html" class="btn btn-primary" style="width:auto;display:inline-flex">← Back to Jobs</a>
+    </div>`;
+      }
+
+      // ── Init ───────────────────────────────────────────────────────────
+      (function init() {
+        const id = getJobId();
+        if (!id) {
+          renderNotFound();
+          return;
+        }
+
+        // Try to find in localStorage first, then seeds
+        const job = findJob(id);
+        if (!job) {
+          // Try seeds directly
+          const seed = SEED_JOBS.find((j) => j.id === id);
+          if (seed) {
+            renderPage(seed);
+            return;
+          }
+          renderNotFound();
+          return;
+        }
+        renderPage(job);
+      })();
+    </script>
+  </body>
+</html>

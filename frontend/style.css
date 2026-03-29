@@ -242,6 +242,24 @@ header button {
   margin-right: auto;
 }
 
+/* CARDS (jobs/products) */
+.card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 0;
+  color: #002a00;
+}
+
+.card p {
+  color: #666;
+}
+
 .page-section {
   padding: 60px 30px;
   border-bottom: 1px solid #d9e7db;

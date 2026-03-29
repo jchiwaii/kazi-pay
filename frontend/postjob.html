@@ -1,8 +1,1697 @@
-<h2>Post a Job</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Job — Kazi Pay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Design Tokens ── */
+      :root {
+        --green-dark: #002a00;
+        --green-mid: #004d00;
+        --green-light: #e8f5e8;
+        --orange: #ff8c00;
+        --orange-hover: #e07800;
+        --gold: #d4af37;
+        --gold-light: #fff8dc;
+        --white: #ffffff;
+        --grey-100: #f7f7f5;
+        --grey-200: #ececea;
+        --grey-300: #d5d5d0;
+        --grey-400: #9b9b96;
+        --grey-700: #3d3d38;
+        --black: #111110;
+        --red: #c0392b;
+        --red-light: #fdecea;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --transition: 0.22s ease;
+      }
 
-<form id="jobForm">
-  <input type="text" id="title" placeholder="Job Title" />
-  <textarea id="desc" placeholder="Description"></textarea>
-  <input type="number" id="price" placeholder="Price" />
-  <button type="submit">Post Job</button>
-</form>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--grey-100);
+        color: var(--grey-700);
+        min-height: 100vh;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* ── Nav ── */
+      nav {
+        background: var(--green-dark);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 64px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--gold);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--green-dark);
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: var(--white);
+        font-weight: 600;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        transition: var(--transition);
+      }
+      .pulse {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: pulse 2s infinite;
+      }
+      .nav-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(212, 175, 55, 0);
+        }
+      }
+
+      /* ── Hero ── */
+      .hero {
+        background: var(--green-dark);
+        padding: 40px 24px 72px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -40px;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.07) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 760px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 2px;
+        background: var(--gold);
+        display: block;
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(26px, 4vw, 38px);
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .hero p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 14px;
+        max-width: 500px;
+      }
+
+      /* ── Escrow Trust Banner ── */
+      .trust-banner {
+        background: rgba(212, 175, 55, 0.12);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: var(--radius-sm);
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .trust-banner span:first-child {
+        font-size: 18px;
+      }
+      .trust-banner strong {
+        color: var(--gold);
+      }
+
+      /* ── Layout ── */
+      .page-body {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px 60px;
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 24px;
+        margin-top: -36px;
+      }
+
+      /* ── Form Card ── */
+      .form-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        animation: fadeUp 0.4s ease both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form-section {
+        padding: 28px 32px;
+        border-bottom: 1px solid var(--grey-200);
+      }
+      .form-section:last-of-type {
+        border-bottom: none;
+      }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--grey-200);
+      }
+
+      /* ── Form Fields ── */
+      .field {
+        margin-bottom: 20px;
+      }
+      .field:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      label .req {
+        color: var(--orange);
+        margin-left: 2px;
+      }
+      label .hint {
+        font-weight: 400;
+        color: var(--grey-400);
+        font-size: 12px;
+        margin-left: 4px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1.5px solid var(--grey-200);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--black);
+        background: var(--grey-100);
+        transition: var(--transition);
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--grey-400);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--gold);
+        background: var(--white);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+      input.error,
+      select.error,
+      textarea.error {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+      }
+      .error-msg {
+        font-size: 12px;
+        color: var(--red);
+        margin-top: 5px;
+        display: none;
+        align-items: center;
+        gap: 4px;
+      }
+      .error-msg.show {
+        display: flex;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      /* Custom select arrow */
+      .select-wrap {
+        position: relative;
+      }
+      .select-wrap::after {
+        content: "▾";
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--grey-400);
+        pointer-events: none;
+        font-size: 13px;
+      }
+      .select-wrap select {
+        padding-right: 32px;
+        cursor: pointer;
+      }
+
+      /* Two-column grid */
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      /* Price input with prefix */
+      .price-wrap {
+        position: relative;
+      }
+      .price-prefix {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--grey-200);
+        border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+        border: 1.5px solid var(--grey-200);
+        border-right: none;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--grey-700);
+        pointer-events: none;
+      }
+      .price-wrap input {
+        padding-left: 62px;
+      }
+      .price-wrap input:focus {
+        border-color: var(--gold);
+      }
+
+      /* Char counter */
+      .char-counter {
+        font-size: 11px;
+        color: var(--grey-400);
+        text-align: right;
+        margin-top: 4px;
+      }
+      .char-counter.warn {
+        color: var(--orange);
+      }
+      .char-counter.over {
+        color: var(--red);
+      }
+
+      /* Tags input */
+      .tags-input-wrap {
+        border: 1.5px solid var(--grey-200);
+        border-radius: var(--radius-sm);
+        background: var(--grey-100);
+        padding: 8px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+        cursor: text;
+        transition: var(--transition);
+        min-height: 46px;
+      }
+      .tags-input-wrap:focus-within {
+        border-color: var(--gold);
+        background: var(--white);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+      .tag-chip {
+        background: var(--green-light);
+        color: var(--green-dark);
+        border: 1px solid rgba(0, 77, 0, 0.2);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 3px 8px 3px 10px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .tag-remove {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--green-dark);
+        font-size: 13px;
+        line-height: 1;
+        padding: 0;
+        opacity: 0.6;
+        transition: opacity var(--transition);
+      }
+      .tag-remove:hover {
+        opacity: 1;
+      }
+      .tag-real-input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: var(--black);
+        flex: 1;
+        min-width: 100px;
+        padding: 2px 4px;
+      }
+      .tag-real-input::placeholder {
+        color: var(--grey-400);
+      }
+
+      /* Deliverables repeater */
+      .deliverable-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .deliverable-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .deliverable-row input {
+        flex: 1;
+      }
+      .btn-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-sm);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: var(--transition);
+        flex-shrink: 0;
+      }
+      .btn-remove {
+        background: var(--red-light);
+        color: var(--red);
+      }
+      .btn-remove:hover {
+        background: var(--red);
+        color: var(--white);
+      }
+      .btn-add-row {
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--green-mid);
+        background: var(--green-light);
+        border: 1.5px dashed rgba(0, 77, 0, 0.3);
+        border-radius: var(--radius-sm);
+        padding: 9px 14px;
+        cursor: pointer;
+        transition: var(--transition);
+        width: 100%;
+        text-align: center;
+        margin-top: 6px;
+      }
+      .btn-add-row:hover {
+        background: var(--green-mid);
+        color: var(--white);
+        border-color: var(--green-mid);
+      }
+
+      /* Toggle switch */
+      .toggle-field {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 0;
+      }
+      .toggle-field + .toggle-field {
+        border-top: 1px solid var(--grey-200);
+      }
+      .toggle-text {
+        flex: 1;
+      }
+      .toggle-text strong {
+        display: block;
+        font-size: 13px;
+        color: var(--black);
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .toggle-text span {
+        font-size: 12px;
+        color: var(--grey-400);
+      }
+      .switch {
+        position: relative;
+        width: 40px;
+        height: 22px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        inset: 0;
+        background: var(--grey-300);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .slider::before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--white);
+        top: 3px;
+        left: 3px;
+        transition: var(--transition);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      .switch input:checked + .slider {
+        background: var(--green-mid);
+      }
+      .switch input:checked + .slider::before {
+        transform: translateX(18px);
+      }
+
+      /* ── Form Actions ── */
+      .form-actions {
+        padding: 20px 32px;
+        background: var(--grey-100);
+        border-top: 1px solid var(--grey-200);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .actions-left {
+        font-size: 12px;
+        color: var(--grey-400);
+      }
+      .actions-right {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        padding: 11px 20px;
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--orange);
+        color: var(--white);
+      }
+      .btn-primary:hover {
+        background: var(--orange-hover);
+        box-shadow: 0 4px 14px rgba(255, 140, 0, 0.35);
+      }
+      .btn-primary:disabled {
+        opacity: 0.5;
+        cursor: default;
+        box-shadow: none;
+      }
+      .btn-ghost {
+        background: var(--white);
+        color: var(--grey-700);
+        border: 1.5px solid var(--grey-200);
+      }
+      .btn-ghost:hover {
+        border-color: var(--grey-400);
+        color: var(--black);
+      }
+      .btn-lg {
+        padding: 13px 26px;
+        font-size: 14px;
+      }
+
+      /* Spinner */
+      .spinner {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-top-color: var(--white);
+        animation: spin 0.7s linear infinite;
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── Sidebar ── */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .side-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--grey-200);
+        overflow: hidden;
+        animation: fadeUp 0.4s ease both;
+      }
+      .side-card:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .side-card:nth-child(3) {
+        animation-delay: 0.16s;
+      }
+
+      .side-card-head {
+        background: var(--green-dark);
+        padding: 14px 18px;
+        font-family: var(--font-display);
+        font-size: 15px;
+        color: var(--white);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .side-card-body {
+        padding: 18px;
+      }
+
+      /* How it works steps */
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .step {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .step-num {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: var(--green-light);
+        color: var(--green-dark);
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid rgba(0, 77, 0, 0.2);
+      }
+      .step-text strong {
+        display: block;
+        font-size: 13px;
+        color: var(--black);
+        margin-bottom: 2px;
+      }
+      .step-text span {
+        font-size: 12px;
+        color: var(--grey-400);
+        line-height: 1.5;
+      }
+
+      /* Tips list */
+      .tips {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .tip {
+        display: flex;
+        gap: 9px;
+        font-size: 13px;
+        color: var(--grey-700);
+        line-height: 1.5;
+      }
+      .tip-icon {
+        font-size: 15px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      /* Live preview */
+      .preview-card {
+        border: 1.5px dashed var(--grey-300);
+        border-radius: var(--radius-sm);
+        padding: 16px;
+        background: var(--grey-100);
+      }
+      .preview-title {
+        font-family: var(--font-display);
+        font-size: 15px;
+        color: var(--black);
+        margin-bottom: 4px;
+        min-height: 22px;
+      }
+      .preview-cat {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+      .preview-desc {
+        font-size: 12px;
+        color: var(--grey-400);
+        line-height: 1.55;
+        margin-bottom: 10px;
+        min-height: 36px;
+      }
+      .preview-price {
+        font-family: var(--font-display);
+        font-size: 18px;
+        color: var(--green-dark);
+        font-weight: 700;
+      }
+      .preview-label {
+        font-size: 11px;
+        color: var(--grey-400);
+        margin-bottom: 6px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+
+      /* Escrow fee box */
+      .fee-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        padding: 7px 0;
+        border-bottom: 1px solid var(--grey-200);
+      }
+      .fee-row:last-child {
+        border-bottom: none;
+        font-weight: 700;
+        color: var(--black);
+        padding-top: 10px;
+      }
+      .fee-row span:last-child {
+        font-family: var(--font-display);
+        font-size: 14px;
+      }
+      .fee-note {
+        font-size: 11px;
+        color: var(--grey-400);
+        margin-top: 8px;
+      }
+
+      /* ── Success Overlay ── */
+      #success-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 42, 0, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      }
+      #success-overlay.show {
+        display: flex;
+      }
+      .success-box {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 40px 36px;
+        text-align: center;
+        max-width: 420px;
+        width: 90%;
+        box-shadow: var(--shadow-lg);
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .success-icon {
+        font-size: 52px;
+        margin-bottom: 16px;
+      }
+      .success-box h2 {
+        font-family: var(--font-display);
+        font-size: 24px;
+        color: var(--black);
+        margin-bottom: 8px;
+      }
+      .success-box p {
+        font-size: 14px;
+        color: var(--grey-400);
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+      .success-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ── Toast ── */
+      #toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--green-dark);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 12px 20px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-left: 3px solid var(--gold);
+      }
+      #toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .page-body {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          order: -1;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+        .form-section {
+          padding: 22px 20px;
+        }
+        .form-actions {
+          padding: 16px 20px;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .actions-right {
+          flex-direction: column;
+        }
+        .hero {
+          padding: 28px 16px 60px;
+        }
+        .page-body {
+          padding: 0 16px 48px;
+          margin-top: -28px;
+        }
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAV ── -->
+    <nav>
+      <div class="nav-inner">
+        <a class="logo" href="#">
+          <div class="logo-mark">K</div>
+          <span class="logo-text">Kazi Pay</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="service.html" class="active">Services</a></li>
+          <li><a href="market.html">Market</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+          <span class="pulse"></span>
+          <div class="avatar">SO</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">New Listing</div>
+        <h1>Post a Job</h1>
+        <p>
+          Describe your project and let skilled freelancers apply — funds held
+          securely in escrow until you're satisfied.
+        </p>
+        <div class="trust-banner">
+          <span>🔐</span>
+          <span
+            >Your payment is <strong>protected by Kazi Pay</strong> — funds are
+            only released when you confirm satisfactory completion.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE BODY ── -->
+    <div class="page-body">
+      <!-- ── FORM CARD ── -->
+      <div class="form-card">
+        <!-- 1. Basic Info -->
+        <div class="form-section">
+          <div class="section-label">1 · Job Details</div>
+
+          <div class="field">
+            <label for="job-title">Job Title <span class="req">*</span></label>
+            <input
+              type="text"
+              id="job-title"
+              placeholder="e.g. Logo Design for Fintech Startup"
+              maxlength="80"
+              autocomplete="off"
+            />
+            <div class="char-counter" id="title-counter">0 / 80</div>
+            <div class="error-msg" id="title-err">
+              ⚠ Please enter a job title.
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="job-category"
+                >Category <span class="req">*</span></label
+              >
+              <div class="select-wrap">
+                <select id="job-category">
+                  <option value="">Select a category…</option>
+                  <option>Web Design</option>
+                  <option>UI/UX Design</option>
+                  <option>Graphic Design</option>
+                  <option>Writing &amp; Copywriting</option>
+                  <option>Marketing &amp; Social Media</option>
+                  <option>Software Development</option>
+                  <option>Data &amp; Analytics</option>
+                  <option>Video &amp; Animation</option>
+                  <option>Photography</option>
+                  <option>Translation</option>
+                  <option>Virtual Assistance</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="error-msg" id="category-err">
+                ⚠ Please select a category.
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="job-deadline"
+                >Deadline <span class="req">*</span>
+                <span class="hint">(expected delivery)</span></label
+              >
+              <input
+                type="text"
+                id="job-deadline"
+                placeholder="e.g. 14 days, 1 July 2025"
+              />
+              <div class="error-msg" id="deadline-err">
+                ⚠ Please enter a deadline.
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="job-desc">Description <span class="req">*</span></label>
+            <textarea
+              id="job-desc"
+              maxlength="1000"
+              placeholder="Describe the project in detail — what you need done, context, goals, preferred style, tools, or any other requirements…"
+            ></textarea>
+            <div class="char-counter" id="desc-counter">0 / 1000</div>
+            <div class="error-msg" id="desc-err">
+              ⚠ Please add a description (min 30 characters).
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Skills & Tags -->
+        <div class="form-section">
+          <div class="section-label">2 · Skills &amp; Tags</div>
+          <div class="field">
+            <label
+              >Required Skills
+              <span class="hint">(type and press Enter or comma)</span></label
+            >
+            <div class="tags-input-wrap" id="tags-wrap">
+              <input
+                class="tag-real-input"
+                id="tag-input"
+                type="text"
+                placeholder="e.g. Figma, Illustrator…"
+                maxlength="30"
+              />
+            </div>
+            <div
+              style="font-size: 11px; color: var(--grey-400); margin-top: 5px"
+            >
+              Max 8 tags
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Deliverables -->
+        <div class="form-section">
+          <div class="section-label">3 · Deliverables</div>
+          <p
+            style="font-size: 13px; color: var(--grey-400); margin-bottom: 14px"
+          >
+            List what you expect to receive upon completion.
+          </p>
+          <div class="deliverable-list" id="deliverable-list">
+            <div class="deliverable-row">
+              <input
+                type="text"
+                placeholder="e.g. Source files in .AI and .PDF format"
+              />
+              <button
+                class="btn-icon btn-remove"
+                type="button"
+                onclick="removeDeliverable(this)"
+                title="Remove"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+          <button class="btn-add-row" type="button" onclick="addDeliverable()">
+            ＋ Add Deliverable
+          </button>
+        </div>
+
+        <!-- 4. Budget & Timeline -->
+        <div class="form-section">
+          <div class="section-label">4 · Budget</div>
+          <div class="field-row">
+            <div class="field">
+              <label for="job-price"
+                >Budget (KES) <span class="req">*</span></label
+              >
+              <div class="price-wrap">
+                <span class="price-prefix">Ksh</span>
+                <input
+                  type="number"
+                  id="job-price"
+                  placeholder="0"
+                  min="500"
+                  step="500"
+                />
+              </div>
+              <div class="error-msg" id="price-err">
+                ⚠ Enter a valid budget (min Ksh 500).
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="job-type">Job Type</label>
+              <div class="select-wrap">
+                <select id="job-type">
+                  <option value="fixed">Fixed Price</option>
+                  <option value="milestone">Milestones</option>
+                  <option value="hourly">Hourly Rate</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Settings -->
+        <div class="form-section">
+          <div class="section-label">5 · Settings</div>
+          <div class="toggle-field">
+            <div class="toggle-text">
+              <strong>Allow Applications</strong>
+              <span>Freelancers can apply directly to this job posting.</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-apply" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-field">
+            <div class="toggle-text">
+              <strong>Urgent Job</strong>
+              <span
+                >Mark this as urgent — shown with a priority badge in
+                listings.</span
+              >
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-urgent" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-field">
+            <div class="toggle-text">
+              <strong>Private Listing</strong>
+              <span>Only freelancers you invite can see this job.</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-private" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <div class="actions-left">🔒 Your job is protected by Kazi Pay</div>
+          <div class="actions-right">
+            <a href="jobs.html" class="btn btn-ghost">Cancel</a>
+            <button class="btn btn-ghost" type="button" onclick="saveDraft()">
+              Save Draft
+            </button>
+            <button
+              class="btn btn-primary btn-lg"
+              type="button"
+              id="submit-btn"
+              onclick="submitJob()"
+            >
+              <div class="spinner" id="spinner"></div>
+              <span id="submit-label">Post Job →</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /form-card -->
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="sidebar">
+        <!-- Live Preview -->
+        <div class="side-card">
+          <div class="side-card-head">👁 Live Preview</div>
+          <div class="side-card-body">
+            <div class="preview-label">How your card will appear</div>
+            <div class="preview-card">
+              <div class="preview-cat" id="prev-cat">Category</div>
+              <div class="preview-title" id="prev-title">Your job title…</div>
+              <div class="preview-desc" id="prev-desc">
+                Your description will appear here…
+              </div>
+              <div class="preview-price" id="prev-price">Ksh —</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Escrow Fee Calculator -->
+        <div class="side-card">
+          <div class="side-card-head">🧮 Escrow Fee</div>
+          <div class="side-card-body">
+            <div class="fee-row">
+              <span>Job budget</span>
+              <span id="fee-budget">Ksh 0</span>
+            </div>
+            <div class="fee-row">
+              <span>Escrow fee (3.5%)</span>
+              <span id="fee-escrow">Ksh 0</span>
+            </div>
+            <div class="fee-row">
+              <span>Total you pay</span>
+              <span id="fee-total">Ksh 0</span>
+            </div>
+            <div class="fee-note">
+              Fee covers secure holding, dispute resolution &amp; transfer upon
+              release.
+            </div>
+          </div>
+        </div>
+
+        <!-- How it Works -->
+        <div class="side-card">
+          <div class="side-card-head">⚙ How Escrow Works</div>
+          <div class="side-card-body">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <strong>Post Your Job</strong>
+                  <span>Describe the work and set your budget.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <strong>Fund Escrow</strong>
+                  <span>Deposit the agreed amount — held securely.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <strong>Work Gets Done</strong>
+                  <span>Freelancer delivers; you review the work.</span>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">
+                  <strong>Release Payment</strong>
+                  <span>Confirm completion — funds sent instantly.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="side-card">
+          <div class="side-card-head">💡 Tips for a Great Post</div>
+          <div class="side-card-body">
+            <div class="tips">
+              <div class="tip">
+                <span class="tip-icon">🎯</span>Be specific — vague briefs
+                attract weak proposals.
+              </div>
+              <div class="tip">
+                <span class="tip-icon">📎</span>Attach reference files or
+                examples if you have them.
+              </div>
+              <div class="tip">
+                <span class="tip-icon">💰</span>Set a realistic budget to
+                attract quality talent.
+              </div>
+              <div class="tip">
+                <span class="tip-icon">📅</span>Give a fair deadline — rushed
+                jobs cost more.
+              </div>
+              <div class="tip">
+                <span class="tip-icon">🏷</span>Use relevant tags to reach the
+                right freelancers.
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <!-- /page-body -->
+
+    <!-- ── SUCCESS OVERLAY ── -->
+    <div id="success-overlay">
+      <div class="success-box">
+        <div class="success-icon">🎉</div>
+        <h2>Job Posted!</h2>
+        <p>
+          Your job is now live on Kazi Escrow. Freelancers can view and apply.
+          You'll receive a notification when applications arrive.
+        </p>
+        <div class="success-actions">
+          <a href="jobs.html" class="btn btn-primary">View All Jobs</a>
+          <a href="dashboard.html" class="btn btn-ghost">Go to Dashboard</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div id="toast">✅ <span id="toast-msg">Done</span></div>
+
+    <script>
+      // ── Helpers ────────────────────────────────────────────────────────
+      const fmt = (n) =>
+        "Ksh " + (isNaN(n) ? 0 : Number(n)).toLocaleString("en-KE");
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      let toastTimer;
+      function showToast(msg, icon = "✅") {
+        $("toast").querySelector("span").textContent = msg;
+        $("toast").childNodes[0].textContent = icon + " ";
+        $("toast").classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(
+          () => $("toast").classList.remove("show"),
+          3000,
+        );
+      }
+
+      // ── Char counters ──────────────────────────────────────────────────
+      function updateCounter(inputId, counterId, max) {
+        const input = $(inputId),
+          counter = $(counterId);
+        const len = input.value.length;
+        counter.textContent = `${len} / ${max}`;
+        counter.className =
+          "char-counter" +
+          (len > max * 0.9 ? (len >= max ? " over" : " warn") : "");
+      }
+      $("job-title").addEventListener("input", () =>
+        updateCounter("job-title", "title-counter", 80),
+      );
+      $("job-desc").addEventListener("input", () =>
+        updateCounter("job-desc", "desc-counter", 1000),
+      );
+
+      // ── Live preview ───────────────────────────────────────────────────
+      function updatePreview() {
+        const title = $("job-title").value.trim();
+        const desc = $("job-desc").value.trim();
+        const cat = $("job-category").value;
+        const price = parseFloat($("job-price").value) || 0;
+
+        $("prev-title").textContent = title || "Your job title…";
+        $("prev-desc").textContent = desc
+          ? desc.slice(0, 100) + (desc.length > 100 ? "…" : "")
+          : "Your description will appear here…";
+        $("prev-cat").textContent = cat || "Category";
+        $("prev-price").textContent = price ? fmt(price) : "Ksh —";
+      }
+
+      $("job-title").addEventListener("input", updatePreview);
+      $("job-desc").addEventListener("input", updatePreview);
+      $("job-category").addEventListener("change", updatePreview);
+      $("job-price").addEventListener("input", updatePreview);
+
+      // ── Fee calculator ─────────────────────────────────────────────────
+      $("job-price").addEventListener("input", () => {
+        const budget = parseFloat($("job-price").value) || 0;
+        const fee = Math.round(budget * 0.035);
+        const total = budget + fee;
+        $("fee-budget").textContent = fmt(budget);
+        $("fee-escrow").textContent = fmt(fee);
+        $("fee-total").textContent = fmt(total);
+        updatePreview();
+      });
+
+      // ── Tags ───────────────────────────────────────────────────────────
+      const tags = [];
+      const MAX_TAGS = 8;
+
+      function renderTags() {
+        const wrap = $("tags-wrap");
+        wrap.querySelectorAll(".tag-chip").forEach((c) => c.remove());
+        tags.forEach((tag, i) => {
+          const chip = document.createElement("span");
+          chip.className = "tag-chip";
+          chip.innerHTML = `${tag}<button class="tag-remove" type="button" onclick="removeTag(${i})">✕</button>`;
+          wrap.insertBefore(chip, $("tag-input"));
+        });
+      }
+
+      function addTag(raw) {
+        const val = raw.trim().replace(/,+$/, "").trim();
+        if (!val || tags.includes(val) || tags.length >= MAX_TAGS) return;
+        tags.push(val);
+        renderTags();
+      }
+
+      function removeTag(i) {
+        tags.splice(i, 1);
+        renderTags();
+      }
+
+      $("tag-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === ",") {
+          e.preventDefault();
+          addTag($("tag-input").value);
+          $("tag-input").value = "";
+        } else if (
+          e.key === "Backspace" &&
+          !$("tag-input").value &&
+          tags.length
+        ) {
+          tags.pop();
+          renderTags();
+        }
+      });
+      $("tag-input").addEventListener("blur", () => {
+        if ($("tag-input").value.trim()) {
+          addTag($("tag-input").value);
+          $("tag-input").value = "";
+        }
+      });
+      $("tags-wrap").addEventListener("click", () => $("tag-input").focus());
+
+      // ── Deliverables ───────────────────────────────────────────────────
+      function addDeliverable() {
+        const list = $("deliverable-list");
+        const row = document.createElement("div");
+        row.className = "deliverable-row";
+        row.innerHTML = `<input type="text" placeholder="e.g. Final design files (AI + PDF)" />
+    <button class="btn-icon btn-remove" type="button" onclick="removeDeliverable(this)" title="Remove">✕</button>`;
+        list.appendChild(row);
+        row.querySelector("input").focus();
+      }
+      function removeDeliverable(btn) {
+        const rows = $("deliverable-list").querySelectorAll(".deliverable-row");
+        if (rows.length <= 1) {
+          btn.closest(".deliverable-row").querySelector("input").value = "";
+          return;
+        }
+        btn.closest(".deliverable-row").remove();
+      }
+
+      // ── Validation ─────────────────────────────────────────────────────
+      function showErr(id, show) {
+        const el = $(id);
+        el.classList.toggle("show", show);
+      }
+      function markField(inputId, errId, condition) {
+        const el = $(inputId);
+        el.classList.toggle("error", condition);
+        showErr(errId, condition);
+        return condition;
+      }
+
+      function validate() {
+        let fail = false;
+        fail |= markField(
+          "job-title",
+          "title-err",
+          !$("job-title").value.trim(),
+        );
+        fail |= markField(
+          "job-category",
+          "category-err",
+          !$("job-category").value,
+        );
+        fail |= markField(
+          "job-deadline",
+          "deadline-err",
+          !$("job-deadline").value.trim(),
+        );
+        fail |= markField(
+          "job-desc",
+          "desc-err",
+          $("job-desc").value.trim().length < 30,
+        );
+        const price = parseFloat($("job-price").value);
+        fail |= markField(
+          "job-price",
+          "price-err",
+          isNaN(price) || price < 500,
+        );
+        return !fail;
+      }
+
+      // Clear errors on change
+      [
+        "job-title",
+        "job-category",
+        "job-deadline",
+        "job-desc",
+        "job-price",
+      ].forEach((id) => {
+        $(id).addEventListener("input", () => {
+          $(id).classList.remove("error");
+        });
+        $(id).addEventListener("change", () => {
+          $(id).classList.remove("error");
+        });
+      });
+
+      // ── Save draft ─────────────────────────────────────────────────────
+      function saveDraft() {
+        const draft = {
+          title: $("job-title").value,
+          category: $("job-category").value,
+          deadline: $("job-deadline").value,
+          description: $("job-desc").value,
+          price: $("job-price").value,
+          tags: [...tags],
+          jobType: $("job-type").value,
+          allowApply: $("toggle-apply").checked,
+          urgent: $("toggle-urgent").checked,
+          private: $("toggle-private").checked,
+          savedAt: new Date().toISOString(),
+        };
+        localStorage.setItem("kazi_draft_job", JSON.stringify(draft));
+        showToast("Draft saved successfully", "💾");
+      }
+
+      // ── Load draft on open ─────────────────────────────────────────────
+      function loadDraft() {
+        try {
+          const d = JSON.parse(localStorage.getItem("kazi_draft_job"));
+          if (!d) return;
+          if (d.title) {
+            $("job-title").value = d.title;
+            updateCounter("job-title", "title-counter", 80);
+          }
+          if (d.category) $("job-category").value = d.category;
+          if (d.deadline) $("job-deadline").value = d.deadline;
+          if (d.description) {
+            $("job-desc").value = d.description;
+            updateCounter("job-desc", "desc-counter", 1000);
+          }
+          if (d.price) $("job-price").value = d.price;
+          if (d.jobType) $("job-type").value = d.jobType;
+          if (d.allowApply !== undefined)
+            $("toggle-apply").checked = d.allowApply;
+          if (d.urgent !== undefined) $("toggle-urgent").checked = d.urgent;
+          if (d.private !== undefined) $("toggle-private").checked = d.private;
+          if (d.tags) {
+            d.tags.forEach((t) => tags.push(t));
+            renderTags();
+          }
+          updatePreview();
+          // Fire fee calc
+          const evt = new Event("input");
+          $("job-price").dispatchEvent(evt);
+          showToast("Draft restored", "📂");
+        } catch {}
+      }
+
+      // ── Submit ─────────────────────────────────────────────────────────
+      function submitJob() {
+        if (!validate()) {
+          showToast("Please fix the highlighted fields", "⚠️");
+          return;
+        }
+
+        // Show loading
+        const btn = $("submit-btn");
+        btn.disabled = true;
+        $("spinner").style.display = "block";
+        $("submit-label").textContent = "Posting…";
+
+        const deliverables = [
+          ...$("deliverable-list").querySelectorAll("input"),
+        ]
+          .map((i) => i.value.trim())
+          .filter(Boolean);
+
+        const job = {
+          id: "j" + Date.now(),
+          title: $("job-title").value.trim(),
+          category: $("job-category").value,
+          deadline: $("job-deadline").value.trim(),
+          description: $("job-desc").value.trim(),
+          price: parseFloat($("job-price").value),
+          jobType: $("job-type").value,
+          tags: [...tags],
+          deliverables,
+          allowApply: $("toggle-apply").checked,
+          urgent: $("toggle-urgent").checked,
+          isPrivate: $("toggle-private").checked,
+          status: "Pending",
+          poster: "James M.",
+          postedAt: new Date().toISOString(),
+        };
+
+        // Simulate async save
+        setTimeout(() => {
+          // Persist to localStorage
+          let jobs = [];
+          try {
+            jobs = JSON.parse(localStorage.getItem("kazi_jobs")) || [];
+          } catch {}
+          jobs.unshift(job);
+          localStorage.setItem("kazi_jobs", JSON.stringify(jobs));
+          localStorage.removeItem("kazi_draft_job");
+
+          // Show success
+          btn.disabled = false;
+          $("spinner").style.display = "none";
+          $("submit-label").textContent = "Post Job →";
+          $("success-overlay").classList.add("show");
+        }, 1200);
+      }
+
+      // ── Init ───────────────────────────────────────────────────────────
+      loadDraft();
+      updatePreview();
+    </script>
+  </body>
+</html>

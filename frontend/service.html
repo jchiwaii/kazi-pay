@@ -1,4 +1,1082 @@
-<h2>Freelance Services</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Jobs — Kazi Escrow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Design Tokens ── */
+      :root {
+        --green-dark: #002a00;
+        --green-mid: #004d00;
+        --green-light: #e8f5e8;
+        --orange: #ff8c00;
+        --orange-hover: #e07800;
+        --gold: #d4af37;
+        --gold-light: #fff8dc;
+        --white: #ffffff;
+        --grey-100: #f7f7f5;
+        --grey-200: #ececea;
+        --grey-400: #9b9b96;
+        --grey-700: #3d3d38;
+        --blue: #1a6fa8;
+        --blue-light: #e8f2fa;
+        --black: #111110;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --font-display: "Playfair Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --transition: 0.22s ease;
+      }
 
-<a href="post-job.html"><button>Post a Job</button></a>
-<a href="jobs.html"><button>Find Work</button></a>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--grey-100);
+        color: var(--grey-700);
+        min-height: 100vh;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* ── Nav ── */
+      nav {
+        background: var(--green-dark);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 64px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+        background: var(--gold);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--green-dark);
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: var(--white);
+        font-weight: 600;
+      }
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+      }
+      .nav-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        transition: var(--transition);
+      }
+      .avatar:hover {
+        border-color: var(--gold);
+      }
+      .pulse {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(212, 175, 55, 0);
+        }
+      }
+
+      /* ── Hero ── */
+      .hero {
+        background: var(--green-dark);
+        padding: 40px 24px 64px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: 10%;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 140, 0, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--gold);
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(28px, 4vw, 42px);
+        color: var(--white);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .hero p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 15px;
+        max-width: 480px;
+      }
+
+      /* ── Controls Bar ── */
+      .controls-wrap {
+        max-width: 1200px;
+        margin: -28px auto 0;
+        padding: 0 24px;
+      }
+      .controls-bar {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .search-group {
+        flex: 1;
+        min-width: 200px;
+        position: relative;
+      }
+      .search-icon {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--grey-400);
+        font-size: 15px;
+        pointer-events: none;
+      }
+      .search-input {
+        width: 100%;
+        padding: 10px 14px 10px 38px;
+        border: 1.5px solid var(--grey-200);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--black);
+        background: var(--grey-100);
+        transition: var(--transition);
+        outline: none;
+      }
+      .search-input::placeholder {
+        color: var(--grey-400);
+      }
+      .search-input:focus {
+        border-color: var(--gold);
+        background: var(--white);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+
+      /* Filter pills */
+      .filter-group {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .filter-pill {
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 7px 13px;
+        border-radius: 20px;
+        border: 1.5px solid var(--grey-200);
+        background: var(--white);
+        color: var(--grey-700);
+        cursor: pointer;
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+      }
+      .filter-pill:hover {
+        border-color: var(--gold);
+        color: var(--green-dark);
+      }
+      .filter-pill.active {
+        background: var(--green-dark);
+        color: var(--white);
+        border-color: var(--green-dark);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        padding: 10px 18px;
+        transition: var(--transition);
+        letter-spacing: 0.2px;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--orange);
+        color: var(--white);
+      }
+      .btn-primary:hover {
+        background: var(--orange-hover);
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--green-dark);
+        border: 1.5px solid var(--green-dark);
+      }
+      .btn-outline:hover {
+        background: var(--green-dark);
+        color: var(--white);
+      }
+      .btn-ghost {
+        background: var(--gold-light);
+        color: #7a6010;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+      }
+      .btn-ghost:hover {
+        background: var(--gold);
+        color: var(--white);
+      }
+      .btn-sm {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+      .btn-full {
+        width: 100%;
+      }
+
+      /* ── Main ── */
+      .main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px 60px;
+      }
+
+      /* Results meta row */
+      .results-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .results-count {
+        font-size: 13px;
+        color: var(--grey-400);
+      }
+      .results-count strong {
+        color: var(--black);
+        font-weight: 600;
+      }
+      .sort-select {
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: var(--grey-700);
+        border: 1.5px solid var(--grey-200);
+        border-radius: var(--radius-sm);
+        padding: 7px 12px;
+        background: var(--white);
+        cursor: pointer;
+        outline: none;
+        transition: var(--transition);
+      }
+      .sort-select:focus {
+        border-color: var(--gold);
+      }
+
+      /* ── Job Cards Grid ── */
+      .jobs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 18px;
+      }
+
+      .job-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--grey-200);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+        animation: fadeUp 0.35s ease both;
+      }
+      .job-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+      .job-card:nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .job-card:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .job-card:nth-child(4) {
+        animation-delay: 0.18s;
+      }
+      .job-card:nth-child(5) {
+        animation-delay: 0.24s;
+      }
+      .job-card:nth-child(6) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Top color bar */
+      .card-bar {
+        height: 4px;
+      }
+      .card-bar.pending {
+        background: linear-gradient(90deg, var(--orange), #ffb347);
+      }
+      .card-bar.progress {
+        background: linear-gradient(90deg, var(--blue), #4da6e0);
+      }
+      .card-bar.completed {
+        background: linear-gradient(90deg, var(--green-mid), #007a00);
+      }
+
+      .card-body {
+        padding: 20px 20px 14px;
+        flex: 1;
+      }
+
+      /* Category chip */
+      .card-category {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .card-title {
+        font-family: var(--font-display);
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--black);
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      .card-desc {
+        font-size: 13px;
+        color: var(--grey-400);
+        line-height: 1.6;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Tags */
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 14px;
+      }
+      .tag {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 3px 9px;
+        background: var(--grey-100);
+        color: var(--grey-700);
+        border-radius: 20px;
+        border: 1px solid var(--grey-200);
+      }
+
+      .card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 12px;
+        border-top: 1px solid var(--grey-200);
+      }
+      .price {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .price sup {
+        font-size: 12px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        vertical-align: super;
+      }
+
+      /* Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        border-radius: 20px;
+        padding: 4px 10px;
+        text-transform: capitalize;
+      }
+      .badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      }
+      .badge.pending {
+        background: #fff3e0;
+        color: #c46800;
+      }
+      .badge.pending::before {
+        background: var(--orange);
+      }
+      .badge.in-progress {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .badge.in-progress::before {
+        background: var(--blue);
+      }
+      .badge.completed {
+        background: var(--green-light);
+        color: var(--green-mid);
+      }
+      .badge.completed::before {
+        background: var(--green-mid);
+      }
+
+      .card-footer {
+        padding: 12px 20px 18px;
+      }
+
+      /* Posted by row */
+      .posted-by {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--grey-400);
+        padding: 0 20px 14px;
+      }
+      .poster {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .poster-avatar {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--green-light);
+        color: var(--green-dark);
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── Empty State ── */
+      .empty-state {
+        grid-column: 1 / -1;
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 2px dashed var(--grey-200);
+        text-align: center;
+        padding: 72px 32px;
+      }
+      .empty-icon {
+        font-size: 52px;
+        margin-bottom: 16px;
+        filter: grayscale(0.2);
+      }
+      .empty-state h3 {
+        font-family: var(--font-display);
+        font-size: 20px;
+        color: var(--black);
+        margin-bottom: 8px;
+      }
+      .empty-state p {
+        color: var(--grey-400);
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+
+      /* ── No Results (search) ── */
+      .no-results {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 56px 24px;
+      }
+      .no-results .icon {
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+      .no-results h3 {
+        font-family: var(--font-display);
+        font-size: 18px;
+        color: var(--black);
+        margin-bottom: 6px;
+      }
+      .no-results p {
+        color: var(--grey-400);
+        font-size: 13px;
+      }
+
+      /* ── Toast ── */
+      #toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        background: var(--green-dark);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 500;
+        padding: 12px 20px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-left: 3px solid var(--gold);
+      }
+      #toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .jobs-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding: 28px 16px 52px;
+        }
+        .controls-wrap {
+          padding: 0 16px;
+        }
+        .main {
+          padding: 28px 16px 48px;
+        }
+        .controls-bar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .filter-group {
+          justify-content: flex-start;
+        }
+      }
+      @media (max-width: 480px) {
+        .results-meta {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── NAVIGATION ── -->
+    <nav>
+      <div class="nav-inner">
+        <a class="logo" href="index.html">
+          <div class="logo-mark">K</div>
+          <span class="logo-text">Kazi Pay</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="service.html" class="active">Services</a></li>
+          <li><a href="market.html">Market</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="nav-user">
+          <span class="pulse"></span>
+          <div class="avatar" title="Your account">SO</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Services &amp; Jobs</div>
+        <h1>Available Jobs</h1>
+        <p>
+          Find work, collaborate securely, and get paid — every transaction
+          protected by escrow.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── CONTROLS BAR ── -->
+    <div class="controls-wrap">
+      <div class="controls-bar">
+        <div class="search-group">
+          <span class="search-icon">🔍</span>
+          <input
+            class="search-input"
+            id="search-input"
+            type="text"
+            placeholder="Search jobs by title or keyword…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="filter-group">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="pending">Pending</button>
+          <button class="filter-pill" data-filter="in-progress">
+            In Progress
+          </button>
+          <button class="filter-pill" data-filter="completed">Completed</button>
+        </div>
+
+        <a href="postjob.html" class="btn btn-primary"> ＋ Post Job </a>
+      </div>
+    </div>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+      <div class="results-meta">
+        <div class="results-count" id="results-count">Loading jobs…</div>
+        <select class="sort-select" id="sort-select">
+          <option value="newest">Newest first</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="title-az">Title A–Z</option>
+        </select>
+      </div>
+
+      <div class="jobs-grid" id="jobs-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </main>
+
+    <!-- ── TOAST ── -->
+    <div id="toast">✅ <span id="toast-msg">Done</span></div>
+
+    <script>
+      //SERVICE
+
+      // ── Seed data ─────────────────────────────────────────────────────
+      const SEED_JOBS = [
+        {
+          id: "j1",
+          title: "Website Redesign — Nairobi Bakery",
+          description:
+            "Full redesign of a local bakery site: new branding, mobile responsive pages, and an integrated online ordering system. Figma mockups provided.",
+          price: 45000,
+          status: "In Progress",
+          category: "Web Design",
+          tags: ["Figma", "HTML/CSS", "Responsive"],
+          poster: "Amina K.",
+          postedAt: new Date("2025-06-12"),
+        },
+        {
+          id: "j2",
+          title: "Logo & Brand Identity Kit",
+          description:
+            "Modern logo design for a tech startup, including full brand identity: colour palette, typography guide, and usage examples. Three revision rounds.",
+          price: 12000,
+          status: "Pending",
+          category: "Design",
+          tags: ["Illustrator", "Branding", "Logo"],
+          poster: "Otieno M.",
+          postedAt: new Date("2025-06-18"),
+        },
+        {
+          id: "j3",
+          title: "SEO Blog Copywriting — 10 Articles",
+          description:
+            "SEO-optimised long-form articles for a fintech blog, 1 500 words each. Topics provided. Keyword research and meta descriptions included.",
+          price: 30000,
+          status: "Pending",
+          category: "Writing",
+          tags: ["SEO", "Fintech", "Long-form"],
+          poster: "Fatuma H.",
+          postedAt: new Date("2025-06-15"),
+        },
+        {
+          id: "j4",
+          title: "Mobile App UI — Android Health Tracker",
+          description:
+            "Design pixel-perfect UI screens for an Android health tracking app. 20 screens, including onboarding, dashboard, and activity log flows.",
+          price: 60000,
+          status: "Pending",
+          category: "UI/UX",
+          tags: ["Figma", "Android", "Health"],
+          poster: "Brian N.",
+          postedAt: new Date("2025-06-20"),
+        },
+        {
+          id: "j5",
+          title: "Social Media Management — 3 Months",
+          description:
+            "Full social media management for a restaurant in Westlands. Content creation, scheduling, and monthly analytics reports. Instagram + Facebook.",
+          price: 18000,
+          status: "In Progress",
+          category: "Marketing",
+          tags: ["Instagram", "Facebook", "Content"],
+          poster: "Grace W.",
+          postedAt: new Date("2025-06-10"),
+        },
+        {
+          id: "j6",
+          title: "Python Data Analysis Script",
+          description:
+            "Write a Python script to process CSV sales data, generate summary statistics, and export a formatted Excel report. Pandas + OpenPyXL stack.",
+          price: 22000,
+          status: "Completed",
+          category: "Data / Dev",
+          tags: ["Python", "Pandas", "Excel"],
+          poster: "John M.",
+          postedAt: new Date("2025-06-05"),
+        },
+      ];
+
+      // ── Helpers ───────────────────────────────────────────────────────
+      function load(key, def) {
+        try {
+          return JSON.parse(localStorage.getItem(key)) || def;
+        } catch {
+          return def;
+        }
+      }
+      function save(key, val) {
+        localStorage.setItem(key, JSON.stringify(val));
+      }
+
+      const fmt = (n) => "Ksh " + Number(n).toLocaleString("en-KE");
+
+      function statusKey(s) {
+        if (!s) return "pending";
+        return s.toLowerCase().replace(/\s+/g, "-");
+      }
+
+      function badgeHTML(status) {
+        const k = statusKey(status);
+        const label = status || "Pending";
+        return `<span class="badge ${k}">${label}</span>`;
+      }
+
+      function initials(name) {
+        return (name || "??")
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+      }
+
+      function timeAgo(date) {
+        if (!date) return "";
+        const d = new Date(date);
+        const diff = Math.floor((Date.now() - d) / 86400000);
+        if (diff === 0) return "Today";
+        if (diff === 1) return "Yesterday";
+        if (diff < 7) return `${diff} days ago`;
+        if (diff < 30) return `${Math.floor(diff / 7)}w ago`;
+        return d.toLocaleDateString("en-KE", {
+          day: "numeric",
+          month: "short",
+        });
+      }
+
+      // ── State ─────────────────────────────────────────────────────────
+      let activeFilter = "all";
+      let searchQuery = "";
+      let sortOrder = "newest";
+
+      // ── Seed & load ───────────────────────────────────────────────────
+      function seedJobs() {
+        if (!localStorage.getItem("kazi_jobs")) {
+          save("kazi_jobs", SEED_JOBS);
+        }
+      }
+
+      function getJobs() {
+        return load("kazi_jobs", SEED_JOBS).map((j) => ({
+          ...j,
+          postedAt: j.postedAt ? new Date(j.postedAt) : new Date(),
+        }));
+      }
+
+      // ── Filter + sort ─────────────────────────────────────────────────
+      function applyFilters(jobs) {
+        let list = [...jobs];
+
+        // Search
+        if (searchQuery.trim()) {
+          const q = searchQuery.trim().toLowerCase();
+          list = list.filter(
+            (j) =>
+              j.title.toLowerCase().includes(q) ||
+              (j.description || "").toLowerCase().includes(q) ||
+              (j.category || "").toLowerCase().includes(q) ||
+              (j.tags || []).some((t) => t.toLowerCase().includes(q)),
+          );
+        }
+
+        // Status filter
+        if (activeFilter !== "all") {
+          list = list.filter((j) => statusKey(j.status) === activeFilter);
+        }
+
+        // Sort
+        if (sortOrder === "price-asc") list.sort((a, b) => a.price - b.price);
+        if (sortOrder === "price-desc") list.sort((a, b) => b.price - a.price);
+        if (sortOrder === "title-az")
+          list.sort((a, b) => a.title.localeCompare(b.title));
+        if (sortOrder === "newest")
+          list.sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt));
+
+        return list;
+      }
+
+      // ── Render ────────────────────────────────────────────────────────
+      function renderJobs() {
+        const allJobs = getJobs();
+        const jobs = applyFilters(allJobs);
+        const grid = document.getElementById("jobs-grid");
+        const count = document.getElementById("results-count");
+
+        if (allJobs.length === 0) {
+          count.innerHTML = "<strong>0</strong> jobs";
+          grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🧑‍💼</div>
+        <h3>No jobs available yet</h3>
+        <p>Be the first to post one and connect with talented freelancers.</p>
+        <a href="post-job.html" class="btn btn-primary">＋ Post the First Job</a>
+      </div>`;
+          return;
+        }
+
+        count.innerHTML = `Showing <strong>${jobs.length}</strong> of <strong>${allJobs.length}</strong> job${allJobs.length !== 1 ? "s" : ""}`;
+
+        if (jobs.length === 0) {
+          grid.innerHTML = `
+      <div class="no-results">
+        <div class="icon">🔎</div>
+        <h3>No jobs match your search</h3>
+        <p>Try different keywords or clear your filters.</p>
+      </div>`;
+          return;
+        }
+
+        grid.innerHTML = jobs
+          .map((job) => {
+            const k = statusKey(job.status);
+            const tags = (job.tags || [])
+              .map((t) => `<span class="tag">${t}</span>`)
+              .join("");
+            const ago = timeAgo(job.postedAt);
+            const ini = initials(job.poster);
+
+            return `
+    <article class="job-card">
+      <div class="card-bar ${k}"></div>
+      <div class="card-body">
+        <div class="card-category">${job.category || "General"}</div>
+        <div class="card-title">${job.title}</div>
+        <div class="card-desc">${job.description}</div>
+        ${tags ? `<div class="card-tags">${tags}</div>` : ""}
+        <div class="card-meta">
+          <div class="price"><sup>Ksh</sup>${Number(job.price).toLocaleString("en-KE")}</div>
+          ${badgeHTML(job.status)}
+        </div>
+      </div>
+      <div class="posted-by">
+        <div class="poster">
+          <div class="poster-avatar">${ini}</div>
+          <span>${job.poster || "Anonymous"}</span>
+        </div>
+        <span>${ago}</span>
+      </div>
+      <div class="card-footer">
+        <a href="job-details.html?id=${job.id}" class="btn btn-outline btn-full btn-sm">
+          View Details →
+        </a>
+      </div>
+    </article>`;
+          })
+          .join("");
+      }
+
+      // ── Event listeners ───────────────────────────────────────────────
+      document.getElementById("search-input").addEventListener("input", (e) => {
+        searchQuery = e.target.value;
+        renderJobs();
+      });
+
+      document.getElementById("sort-select").addEventListener("change", (e) => {
+        sortOrder = e.target.value;
+        renderJobs();
+      });
+
+      document.querySelectorAll(".filter-pill").forEach((pill) => {
+        pill.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-pill")
+            .forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          activeFilter = pill.dataset.filter;
+          renderJobs();
+        });
+      });
+
+      // ── Init ──────────────────────────────────────────────────────────
+      seedJobs();
+      renderJobs();
+    </script>
+  </body>
+</html>
